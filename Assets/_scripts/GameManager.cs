@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using NaughtyAttributes;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,6 +36,9 @@ public class GameManager : MonoBehaviour
     #region Load Level
     public Action OnLoadedScene;
     public Action OnLoadScene;
+
+    [BoxGroup("Param")]
+    private float timeTransition = 1f;
     [Scene, SerializeField] private string scene_1;
     [Scene, SerializeField] private string scene_2;
     public void LoadLevel(string sceneName)
@@ -44,7 +46,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadSceneAsync(sceneName));
     }
 
-    IEnumerator LoadSceneAsync(string sceneName)
+    private IEnumerator LoadLevelCanvas(Menu menu)
+    {
+        OnLoadedScene?.Invoke();
+        yield return new WaitForSeconds(timeTransition);
+        OnLoadedScene?.Invoke();
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
     {
         OnLoadScene?.Invoke();
 
