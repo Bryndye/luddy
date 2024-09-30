@@ -9,7 +9,7 @@ public class Wizard : MonoBehaviour, IPointerClickHandler
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI title;
-    //[SerializeField] private TextMeshProUGUI content;
+    [SerializeField] private TextMeshProUGUI content;
 
     public void SetInfos(LevelInfos _levelInfos)
     {

@@ -21,18 +21,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            LoadLevel(scene_1);
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            LoadLevel(scene_2);
-        }
-    }
-
     #region Load Level
     public Action OnLoadedScene;
     public Action OnLoadScene;
