@@ -45,17 +45,17 @@ public class CanvasTransitionManager : MonoBehaviour
         mAnimator?.SetTrigger(exitParam);
     }
 
-    //private void Transitions()
-    //{
-    //    TransitionOn();
-    //    TransitionOff();
-    //}
+    private void Transitions()
+    {
+        TransitionOn();
+        TransitionOff();
+    }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        Transitions();
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Transitions();
+        }
+    }
 }
