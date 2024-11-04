@@ -41,10 +41,10 @@ public class AuthManager : MonoBehaviour
     {
         AuthenticationService.Instance.SignedIn += () => {
             // Shows how to get a playerID
-            Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
+            //Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
 
             // Shows how to get an access token
-            Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
+            //Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
 
             // Desactive auth canvas and active main canvas
             _authManager.gameObject.SetActive( false );
@@ -143,7 +143,6 @@ public class AuthManager : MonoBehaviour
     }
     async Task SignInWithUsernamePasswordAsync(string email, string password)
     {
-        Debug.Log(email + password);
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(email, password);
@@ -188,6 +187,5 @@ public class AuthManager : MonoBehaviour
     public void UpdateCurrentAccount()
     {
         MyAccount = new Account(AuthenticationService.Instance.PlayerId);
-        Debug.Log("AuthManager : new current account");
     }
 }

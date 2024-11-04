@@ -1,9 +1,11 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-using Unity.Services.CloudSave;
 using System.Threading.Tasks;
-using Unity.Services.Authentication;
+using TreeEditor;
+using Unity.Services.CloudSave;
+using UnityEditor.ShaderGraph.Serialization;
+using UnityEngine;
 
 [Serializable]
 public class SubAccount
@@ -19,13 +21,19 @@ public class SubAccount
 }
 
 [Serializable]
+public class PlayerSubAccounts
+{
+    public List<SubAccount> SubAccounts = new List<SubAccount>();
+}
+
+[Serializable]
 public class Account
 {
     private string id;
     public string Id { get { return id; } }
 
-    public List<SubAccount> SubAccounts = new List<SubAccount>();
-    public int MaxSubAccounts = 2;
+    public PlayerSubAccounts MyPlayerSubAccounts;
+    public int MaxSubAccounts = 0;
     public Dictionary<string, Unity.Services.CloudSave.Models.Item> Datas;
 
     public Account(string _id)
@@ -40,26 +48,27 @@ public class Account
         // Si le joueur a des datas, ne pas re-init
         if (await CheckIfUserDataExists())
         {
+            SetCloudDataToObject();
             return;
         }
 
         // Init du premier subaccount
         string newId = id + 1.ToString();
-        SubAccount subAccount = new SubAccount(newId, "custom name ");
-        List<SubAccount> subAccounts = new List<SubAccount>
-        {
-            subAccount
-        };
+        SubAccount subAccount = new SubAccount(newId, "custom name");
+        PlayerSubAccounts _tempPSA = new PlayerSubAccounts();
+        _tempPSA.SubAccounts.Add(subAccount);
 
         // init de la structure de datas
         try
         {
             var iniData = new Dictionary<string, object>
             {
-                { "SubAccounts", subAccounts},
+                { "SubAccounts", JsonUtility.ToJson(_tempPSA)},
                 { "MaxSubAccounts", 2},
             };
             await CloudSaveService.Instance.Data.Player.SaveAsync(iniData);
+
+            SetCloudDataToObject();
 
             // TEST
             await ChargerCompte();
@@ -80,30 +89,40 @@ public class Account
             // Vérifie si des données existent
             return allData.Count > 0;
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             Debug.LogError("Erreur lors de la vérification des données : " + e.Message);
             return false;
         }
     }
 
-    // Sauvegarde des données dans le Cloud
-    //public async Task SauvegarderCompte()
-    //{
-    //    try
-    //    {
-    //        var data = new Dictionary<string, object>
-    //        {
-    //            { "ComptePrincipal_" + Id, JsonUtility.ToJson(this) }
-    //        };
-    //        await CloudSaveService.Instance.Data.Player.SaveAsync(data);
-    //        Debug.Log("Données sauvegardées avec succès.");
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Debug.LogError("Erreur de sauvegarde: " + ex.Message);
-    //    }
-    //}
+    private async void SetCloudDataToObject()
+    {
+        var retrievedData = await CloudSaveService.Instance.Data.Player.LoadAsync(new HashSet<string> { "SubAccounts" });
+
+        if (retrievedData.TryGetValue("SubAccounts", out var item))
+        {
+            try
+            {
+                var test = JsonConvert.SerializeObject(item.Value);
+                test = test.Replace("\\\"", "\"").Replace("\\", "");
+                if (test.StartsWith("\"") && test.EndsWith("\""))
+                {
+                    test = test[1..^1]; // Enlève le premier et le dernier caractère
+                }
+                Debug.Log(test);
+                //string bite = "{\"SubAccounts\":[{\"Id\":\"xdixwR2C1FHoydJTqfLTFNq5Ha5k1\",\"Nom\":\"custom name\"}]}";
+                MyPlayerSubAccounts = JsonUtility.FromJson<PlayerSubAccounts>(test);
+                //PlayerSubAccounts playerSubAccounts = JsonConvert.DeserializeObject<PlayerSubAccounts>(test);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Deserialization failed: {ex.Message}");
+            }
+        }
+    }
+
+
 
     // Chargement des données depuis le Cloud
     public async Task ChargerCompte()
