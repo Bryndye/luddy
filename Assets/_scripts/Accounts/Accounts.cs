@@ -63,7 +63,7 @@ public class Account
         {
             var iniData = new Dictionary<string, object>
             {
-                { "SubAccounts", JsonUtility.ToJson(_tempPSA)},
+                { "SubAccounts", _tempPSA},
                 { "MaxSubAccounts", 2},
             };
             await CloudSaveService.Instance.Data.Player.SaveAsync(iniData);
