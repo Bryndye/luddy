@@ -29,7 +29,7 @@ public class Wizard : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.pointerPress == gameObject)
         {
-            Debug.Log(gameObject.name);
+            //Debug.Log(gameObject.name);
             Close();
         }
         else

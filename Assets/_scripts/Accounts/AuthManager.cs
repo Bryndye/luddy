@@ -6,6 +6,7 @@ using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using NaughtyAttributes;
 
 public class AuthManager : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class AuthManager : MonoBehaviour
 
     private CanvasAuthManager _authManager;
     [SerializeField] private GameObject _mainCanvas;
+
+    [BoxGroup("Accounts")]
+    public Account MyAccount;
+
 
     #region Init
     async void Awake()
@@ -87,15 +92,16 @@ public class AuthManager : MonoBehaviour
     {
         if (!ValidateInputs(email, password))
         {
-            Debug.Log("ERR : missing username or password : " + email+ " " + password);
+            Debug.Log("AuthManager/ ERR : missing username or password : " + email+ " " + password);
             return;
         }
         if (!IsValidEmail(email))
         {
-            Debug.Log("ERR : wrong format email : " + email);
+            Debug.Log("AuthManager/ ERR : wrong format email : " + email);
             return;
         }
         await SignUpWithUsernamePasswordAsync(email, password);
+        UpdateCurrentAccount();
     }
     async Task SignUpWithUsernamePasswordAsync(string email, string password)
     {
@@ -104,7 +110,7 @@ public class AuthManager : MonoBehaviour
             Debug.Log(email);
             Debug.Log(password);
             await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(email, password);
-            Debug.Log("SignUp is successful.");
+            Debug.Log("AuthManager : SignUp is successful.");
         }
         catch (AuthenticationException ex)
         {
@@ -124,15 +130,16 @@ public class AuthManager : MonoBehaviour
     {
         if (!ValidateInputs(email, password))
         {
-            Debug.Log("ERR : missing username or password " + email + " " + password);
+            Debug.Log("AuthManager/ ERR : missing username or password " + email + " " + password);
             return;
         }
         if (!IsValidEmail(email))
         {
-            Debug.Log("ERR : wrong format email : " + email);
+            Debug.Log("AuthManager/ ERR : wrong format email : " + email);
             return;
         }
         await SignInWithUsernamePasswordAsync(email, password);
+        UpdateCurrentAccount();
     }
     async Task SignInWithUsernamePasswordAsync(string email, string password)
     {
@@ -140,7 +147,7 @@ public class AuthManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(email, password);
-            Debug.Log("SignIn is successful.");
+            Debug.Log("AuthManager : SignIn is successful.");
         }
         catch (AuthenticationException ex)
         {
@@ -161,7 +168,7 @@ public class AuthManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.UpdatePasswordAsync(currentPassword, newPassword);
-            Debug.Log("Password updated.");
+            Debug.Log("AuthManager : Password updated.");
         }
         catch (AuthenticationException ex)
         {
@@ -177,4 +184,10 @@ public class AuthManager : MonoBehaviour
         }
     }
     #endregion
+
+    public void UpdateCurrentAccount()
+    {
+        MyAccount = new Account(AuthenticationService.Instance.PlayerId);
+        Debug.Log("AuthManager : new current account");
+    }
 }

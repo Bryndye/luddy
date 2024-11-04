@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-using Unity.Services.Authentication;
-using System.Threading.Tasks;
-using Unity.Services.Core;
 using System;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasAuthManager : MonoBehaviour
 {
