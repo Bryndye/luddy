@@ -6,43 +6,58 @@ using UnityEngine.UI;
 public class CanvasAuthManager : MonoBehaviour
 {
     public static CanvasAuthManager Instance;
+    private AuthManager _authManager;
 
-    public TMP_InputField emailInput;
-    public TMP_InputField passwordInput;
-    public Button signInButton;
-    public Button signUpButton;
+    public TMP_InputField EmailInput;
+    public TMP_InputField PasswordInput;
+    public Button SignInButton;
+    public Button SignUpButton;
+    public ProfilsUI MyProfilsUI;
 
-    public Action<string, string> OnSignIn;
-    public Action<string, string> OnSignUp;
+    public Action<string, string> OnSignInUI;
+    public Action<string, string> OnSignUpUI;
 
     private void Awake()
     {
         Instance = this;
 
-        signInButton.onClick.AddListener(OnSignInUI);
-        signUpButton.onClick.AddListener(OnSignUpUI);
+        SignInButton.onClick.AddListener(SignInUI);
+        SignUpButton.onClick.AddListener(SignUpUI);
     }
 
     private void Start()
     {
-        emailInput.text = "test@example.com";
-        passwordInput.text = "Password123!";
+        _authManager = AuthManager.Instance;
+
+        // Permet d'activer l'écran des profils
+        _authManager.OnSignIn += MyProfilsUI.ActiveProfilsUIAccount;
+
+        // Valeurs test
+        EmailInput.text = "test@example.com";
+        PasswordInput.text = "Password123!";
     }
 
-    void OnSignInUI()
+    void SignInUI()
     {
-        string email = emailInput.text;
-        string password = passwordInput.text;
+        string email = EmailInput.text;
+        string password = PasswordInput.text;
 
-        OnSignIn?.Invoke(email, password);
+        OnSignInUI?.Invoke(email, password);
     }
 
-    void OnSignUpUI()
+    void SignUpUI()
     {
-        string email = emailInput.text;
-        string password = passwordInput.text;
+        string email = EmailInput.text;
+        string password = PasswordInput.text;
 
-        OnSignUp?.Invoke(email, password);
+        OnSignUpUI?.Invoke(email, password);
     }
 
+
+    #region Profils
+    public void AddNewProfil()
+    {
+        Debug.Log("New Profil");
+    }
+    #endregion
 }

@@ -12,11 +12,14 @@ public class AuthManager : MonoBehaviour
 {
     public static AuthManager Instance;
 
-    private CanvasAuthManager _authManager;
+    private CanvasAuthManager _canvasAuthManager;
     [SerializeField] private GameObject _mainCanvas;
 
     [BoxGroup("Accounts")]
     public Account MyAccount;
+    public SubAccount MyCurrentSubAccount;
+    public Action<Account> OnSignIn;
+    public Action<Account> OnSignUp;
 
 
     #region Init
@@ -45,10 +48,6 @@ public class AuthManager : MonoBehaviour
 
             // Shows how to get an access token
             //Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
-
-            // Desactive auth canvas and active main canvas
-            _authManager.gameObject.SetActive( false );
-            _mainCanvas.SetActive( true );
         };
 
         AuthenticationService.Instance.SignInFailed += (err) => {
@@ -67,10 +66,10 @@ public class AuthManager : MonoBehaviour
 
     private void Start()
     {
-        _authManager = CanvasAuthManager.Instance;
+        _canvasAuthManager = CanvasAuthManager.Instance;
 
-        _authManager.OnSignIn += SignIn;
-        _authManager.OnSignUp += SignUp;
+        _canvasAuthManager.OnSignInUI += SignIn;
+        _canvasAuthManager.OnSignUpUI += SignUp;
     }
     #endregion
 
@@ -102,6 +101,8 @@ public class AuthManager : MonoBehaviour
         }
         await SignUpWithUsernamePasswordAsync(email, password);
         UpdateCurrentAccount();
+        Debug.Log("OnSignIn Invoke - Set Profils");
+        OnSignIn?.Invoke(MyAccount);
     }
     async Task SignUpWithUsernamePasswordAsync(string email, string password)
     {
@@ -115,13 +116,11 @@ public class AuthManager : MonoBehaviour
         catch (AuthenticationException ex)
         {
             // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
             Debug.LogException(ex);
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
             Debug.LogException(ex);
         }
     }
@@ -140,6 +139,8 @@ public class AuthManager : MonoBehaviour
         }
         await SignInWithUsernamePasswordAsync(email, password);
         UpdateCurrentAccount();
+        Debug.Log("OnSignIn Invoke - Set Profils");
+        OnSignIn?.Invoke(MyAccount);
     }
     async Task SignInWithUsernamePasswordAsync(string email, string password)
     {
@@ -151,13 +152,11 @@ public class AuthManager : MonoBehaviour
         catch (AuthenticationException ex)
         {
             // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
             Debug.LogException(ex);
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
             Debug.LogException(ex);
         }
     }
@@ -172,20 +171,20 @@ public class AuthManager : MonoBehaviour
         catch (AuthenticationException ex)
         {
             // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
             Debug.LogException(ex);
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
             Debug.LogException(ex);
         }
     }
     #endregion
 
-    public void UpdateCurrentAccount()
+    public Account UpdateCurrentAccount()
     {
         MyAccount = new Account(AuthenticationService.Instance.PlayerId);
+        Debug.Log("MyAccount is updated");
+        return MyAccount;
     }
 }

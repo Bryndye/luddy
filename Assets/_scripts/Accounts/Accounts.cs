@@ -1,11 +1,11 @@
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TreeEditor;
 using Unity.Services.CloudSave;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public class SubAccount
@@ -48,7 +48,7 @@ public class Account
         // Si le joueur a des datas, ne pas re-init
         if (await CheckIfUserDataExists())
         {
-            SetCloudDataToObject();
+            LoadAllDatas();
             return;
         }
 
@@ -68,10 +68,7 @@ public class Account
             };
             await CloudSaveService.Instance.Data.Player.SaveAsync(iniData);
 
-            SetCloudDataToObject();
-
-            // TEST
-            await ChargerCompte();
+            LoadAllDatas();
         }
         catch (Exception e)
         {
@@ -79,6 +76,7 @@ public class Account
         }
     }
 
+    #region middleware
     private async Task<bool> CheckIfUserDataExists()
     {
         try
@@ -95,6 +93,51 @@ public class Account
             return false;
         }
     }
+    #endregion
+
+    #region Controllers
+    public async void LoadAllDatas()
+    {
+        Datas = await CloudSaveService.Instance.Data.Player.LoadAllAsync();
+
+        Datas.TryGetValue("SubAccounts", out var _subAccounts);
+        var value = JsonConvert.SerializeObject(_subAccounts.Value);
+        MyPlayerSubAccounts = JsonUtility.FromJson<PlayerSubAccounts>(value);
+        Debug.Log("subaccounts done");
+
+        Datas.TryGetValue("MaxSubAccounts", out var _maxSubAccounts);
+        value = JsonConvert.SerializeObject(_maxSubAccounts.Value);
+        MaxSubAccounts = int.Parse(value);
+
+        //Datas.TryGetValue("MaxSubAccounts", out var _maxSubAccounts);
+        try
+        {
+
+            // Parcourir toutes les clés et valeurs
+            //foreach (var kvp in Datas)
+            //{
+            //    string key = kvp.Key;
+            //    string value = kvp.Value.ToString(); // Convertir en string pour traitement
+
+            //    Debug.Log($"Key: {key}, Value: {value}");
+
+            //    // Exemple : Désérialiser une valeur spécifique si nécessaire
+            //    if (key == "SubAccounts")
+            //    {
+            //        value = JsonConvert.SerializeObject(item.Value);
+            //        MyPlayerSubAccounts = JsonUtility.FromJson<PlayerSubAccounts>(value);
+            //    }
+            //    else if (key == "MaxSubAccounts")
+            //    {
+            //        MaxSubAccounts = int.Parse(value);
+            //    }
+            //}
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Erreur lors du chargement des données : " + e.Message);
+        }
+    }
 
     private async void SetCloudDataToObject()
     {
@@ -105,15 +148,8 @@ public class Account
             try
             {
                 var test = JsonConvert.SerializeObject(item.Value);
-                test = test.Replace("\\\"", "\"").Replace("\\", "");
-                if (test.StartsWith("\"") && test.EndsWith("\""))
-                {
-                    test = test[1..^1]; // Enlève le premier et le dernier caractère
-                }
-                Debug.Log(test);
-                //string bite = "{\"SubAccounts\":[{\"Id\":\"xdixwR2C1FHoydJTqfLTFNq5Ha5k1\",\"Nom\":\"custom name\"}]}";
+
                 MyPlayerSubAccounts = JsonUtility.FromJson<PlayerSubAccounts>(test);
-                //PlayerSubAccounts playerSubAccounts = JsonConvert.DeserializeObject<PlayerSubAccounts>(test);
             }
             catch (Exception ex)
             {
@@ -122,7 +158,7 @@ public class Account
         }
     }
 
-
+    #endregion
 
     // Chargement des données depuis le Cloud
     public async Task ChargerCompte()
