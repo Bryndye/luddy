@@ -103,40 +103,10 @@ public class Account
         Datas.TryGetValue("SubAccounts", out var _subAccounts);
         var value = JsonConvert.SerializeObject(_subAccounts.Value);
         MyPlayerSubAccounts = JsonUtility.FromJson<PlayerSubAccounts>(value);
-        Debug.Log("subaccounts done");
 
         Datas.TryGetValue("MaxSubAccounts", out var _maxSubAccounts);
         value = JsonConvert.SerializeObject(_maxSubAccounts.Value);
         MaxSubAccounts = int.Parse(value);
-
-        //Datas.TryGetValue("MaxSubAccounts", out var _maxSubAccounts);
-        try
-        {
-
-            // Parcourir toutes les clés et valeurs
-            //foreach (var kvp in Datas)
-            //{
-            //    string key = kvp.Key;
-            //    string value = kvp.Value.ToString(); // Convertir en string pour traitement
-
-            //    Debug.Log($"Key: {key}, Value: {value}");
-
-            //    // Exemple : Désérialiser une valeur spécifique si nécessaire
-            //    if (key == "SubAccounts")
-            //    {
-            //        value = JsonConvert.SerializeObject(item.Value);
-            //        MyPlayerSubAccounts = JsonUtility.FromJson<PlayerSubAccounts>(value);
-            //    }
-            //    else if (key == "MaxSubAccounts")
-            //    {
-            //        MaxSubAccounts = int.Parse(value);
-            //    }
-            //}
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("Erreur lors du chargement des données : " + e.Message);
-        }
     }
 
     private async void SetCloudDataToObject()

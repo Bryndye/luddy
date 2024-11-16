@@ -1591,6 +1591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ffee200b5b377049b1234dc8ba944f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AuthUI: {fileID: 885733264351578762}
   EmailInput: {fileID: 2091547809652862952}
   PasswordInput: {fileID: 1425938388355394253}
   SignInButton: {fileID: 3239296834286075432}

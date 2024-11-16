@@ -26,6 +26,6 @@ public class ProfilUI : MonoBehaviour
 
     public void UseProfil()
     {
-        _authManager.MyCurrentSubAccount = mySubAccount;
+        _authManager.SignInSubAccount(mySubAccount);
     }
 }

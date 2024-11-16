@@ -20,6 +20,7 @@ public class AuthManager : MonoBehaviour
     public SubAccount MyCurrentSubAccount;
     public Action<Account> OnSignIn;
     public Action<Account> OnSignUp;
+    public Action OnSubAccountSignIn;
 
 
     #region Init
@@ -100,8 +101,8 @@ public class AuthManager : MonoBehaviour
             return;
         }
         await SignUpWithUsernamePasswordAsync(email, password);
+
         UpdateCurrentAccount();
-        Debug.Log("OnSignIn Invoke - Set Profils");
         OnSignIn?.Invoke(MyAccount);
     }
     async Task SignUpWithUsernamePasswordAsync(string email, string password)
@@ -138,8 +139,8 @@ public class AuthManager : MonoBehaviour
             return;
         }
         await SignInWithUsernamePasswordAsync(email, password);
+
         UpdateCurrentAccount();
-        Debug.Log("OnSignIn Invoke - Set Profils");
         OnSignIn?.Invoke(MyAccount);
     }
     async Task SignInWithUsernamePasswordAsync(string email, string password)
@@ -179,12 +180,19 @@ public class AuthManager : MonoBehaviour
             Debug.LogException(ex);
         }
     }
+
+    public void SignInSubAccount(SubAccount subAccount = null)
+    {
+        MyCurrentSubAccount = subAccount ?? subAccount;
+        OnSubAccountSignIn?.Invoke();
+        _mainCanvas.SetActive(true);
+    }
+
     #endregion
 
     public Account UpdateCurrentAccount()
     {
         MyAccount = new Account(AuthenticationService.Instance.PlayerId);
-        Debug.Log("MyAccount is updated");
         return MyAccount;
     }
 }

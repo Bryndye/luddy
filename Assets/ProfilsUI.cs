@@ -63,12 +63,10 @@ public class ProfilsUI : MonoBehaviour
             Destroy(newProfilT.gameObject);
         }
 
-
         foreach (SubAccount subAccount in Account.MyPlayerSubAccounts.SubAccounts)
         {
             Instantiate(profilUIPrefab, container).SetProfil(subAccount);
         }
         newProfilT?.SetAsLastSibling();
     }
-
 }
