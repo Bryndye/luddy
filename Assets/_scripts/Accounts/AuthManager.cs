@@ -7,6 +7,7 @@ using Unity.Services.Authentication;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using NaughtyAttributes;
+using System.Linq;
 
 public class AuthManager : MonoBehaviour
 {
@@ -190,9 +191,17 @@ public class AuthManager : MonoBehaviour
 
     #endregion
 
+    #region Account
     public Account UpdateCurrentAccount()
     {
         MyAccount = new Account(AuthenticationService.Instance.PlayerId);
         return MyAccount;
     }
+
+    public void AddNewProfil()
+    {
+        MyAccount.AddNewProfil();
+        SignInSubAccount(MyAccount.SubAccounts.Last());
+    }
+    #endregion
 }

@@ -57,13 +57,13 @@ public class ProfilsUI : MonoBehaviour
         }
 
         // Sauf si le nombre max de subAccount est atteint
-        if (Account.MyPlayerSubAccounts.SubAccounts.Count >= Account.MaxSubAccounts)
+        if (Account.SubAccounts.Count >= Account.MaxSubAccounts)
         {
             // Pas de nouveau profil disponible
             Destroy(newProfilT.gameObject);
         }
 
-        foreach (SubAccount subAccount in Account.MyPlayerSubAccounts.SubAccounts)
+        foreach (SubAccount subAccount in Account.SubAccounts)
         {
             Instantiate(profilUIPrefab, container).SetProfil(subAccount);
         }

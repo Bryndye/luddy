@@ -87,6 +87,7 @@ public class CanvasAuthManager : MonoBehaviour
     public void AddNewProfil()
     {
         Debug.Log("New Profil");
+        _authManager.AddNewProfil();
     }
     #endregion
 }
