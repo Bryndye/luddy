@@ -128,7 +128,7 @@ public class Account
         }
     }
 
-    public void AddNewProfil()
+    public void AddNewProfil(string name = null)
     {
         if (SubAccounts.Count >= MaxSubAccounts)
         {
@@ -137,7 +137,14 @@ public class Account
         }
 
         string newId = id + (SubAccounts.Count + 1).ToString();
-        SubAccount subAccount = new SubAccount(newId, "Auto Init");
+
+        // Si pas de nom, nom par défaut
+        if (name == null)
+        {
+            name = "Profil" + (SubAccounts.Count + 1).ToString();
+        }
+
+        SubAccount subAccount = new SubAccount(newId, name);
         SubAccounts.Add(subAccount);
 
         SetDatas();

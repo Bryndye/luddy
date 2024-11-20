@@ -44,15 +44,18 @@ public class CanvasAuthManager : MonoBehaviour
         PasswordInput.text = "Password123!";
 
 
-        AuthenticationService.Instance.SignedIn += () => {
+        AuthenticationService.Instance.SignedIn += () =>
+        {
             AuthUI?.SetActive(false);
         };
 
-        AuthenticationService.Instance.SignInFailed += (err) => {
+        AuthenticationService.Instance.SignInFailed += (err) =>
+        {
             AuthUI?.SetActive(true);
         };
 
-        AuthenticationService.Instance.SignedOut += () => {
+        AuthenticationService.Instance.SignedOut += () =>
+        {
             AuthUI?.SetActive(true);
         };
     }
@@ -82,12 +85,6 @@ public class CanvasAuthManager : MonoBehaviour
     public void SetActiveProfilsUI(bool active)
     {
         MyProfilsUI.gameObject.SetActive(active);
-    }
-
-    public void AddNewProfil()
-    {
-        Debug.Log("New Profil");
-        _authManager.AddNewProfil();
     }
     #endregion
 }

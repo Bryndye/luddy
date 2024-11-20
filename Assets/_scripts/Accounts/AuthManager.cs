@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Unity.Services.Core;
-using Unity.Services.Authentication;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
+using Luddy.Validators;
 using NaughtyAttributes;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
+using UnityEngine;
 
 public class AuthManager : MonoBehaviour
 {
@@ -44,7 +42,8 @@ public class AuthManager : MonoBehaviour
     // Setup authentication event handlers if desired
     void SetupEvents()
     {
-        AuthenticationService.Instance.SignedIn += () => {
+        AuthenticationService.Instance.SignedIn += () =>
+        {
             // Shows how to get a playerID
             //Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}");
 
@@ -52,11 +51,13 @@ public class AuthManager : MonoBehaviour
             //Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
         };
 
-        AuthenticationService.Instance.SignInFailed += (err) => {
+        AuthenticationService.Instance.SignInFailed += (err) =>
+        {
             Debug.LogError(err);
         };
 
-        AuthenticationService.Instance.SignedOut += () => {
+        AuthenticationService.Instance.SignedOut += () =>
+        {
             Debug.Log("Player signed out.");
         };
 
@@ -75,28 +76,15 @@ public class AuthManager : MonoBehaviour
     }
     #endregion
 
-    #region Validators
-    bool ValidateInputs(string email, string password)
-    {
-        return !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password);
-    }
-
-    public bool IsValidEmail(string email)
-    {
-        string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-        return Regex.IsMatch(email, emailPattern);
-    }
-    #endregion
-
     #region Sign Up/in - Edit Account
     public async void SignUp(string email, string password)
     {
-        if (!ValidateInputs(email, password))
+        if (!Validators.ValidateInputs(email, password))
         {
-            Debug.Log("AuthManager/ ERR : missing username or password : " + email+ " " + password);
+            Debug.Log("AuthManager/ ERR : missing username or password : " + email + " " + password);
             return;
         }
-        if (!IsValidEmail(email))
+        if (!Validators.IsValidEmail(email))
         {
             Debug.Log("AuthManager/ ERR : wrong format email : " + email);
             return;
@@ -129,12 +117,12 @@ public class AuthManager : MonoBehaviour
 
     public async void SignIn(string email, string password)
     {
-        if (!ValidateInputs(email, password))
+        if (!Validators.ValidateInputs(email, password))
         {
             Debug.Log("AuthManager/ ERR : missing username or password " + email + " " + password);
             return;
         }
-        if (!IsValidEmail(email))
+        if (!Validators.IsValidEmail(email))
         {
             Debug.Log("AuthManager/ ERR : wrong format email : " + email);
             return;
@@ -198,9 +186,9 @@ public class AuthManager : MonoBehaviour
         return MyAccount;
     }
 
-    public void AddNewProfil()
+    public void AddNewProfil(string name = null)
     {
-        MyAccount.AddNewProfil();
+        MyAccount.AddNewProfil(name);
         SignInSubAccount(MyAccount.SubAccounts.Last());
     }
     #endregion

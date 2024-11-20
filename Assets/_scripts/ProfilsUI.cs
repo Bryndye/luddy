@@ -1,26 +1,43 @@
+using Luddy.Validators;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class ProfilsUI : MonoBehaviour
 {
-    [SerializeField] private Account Account;
-    [SerializeField] private Transform container;
-    [SerializeField] private ProfilUI profilUIPrefab;
+    private AuthManager _authManager;
 
+    [SerializeField] private Account Account;
+    [SerializeField] private ProfilUI profilUIPrefab;
+    [SerializeField] private Transform container;
+    [SerializeField] private GameObject containerTemp;
+
+    [Header("Form New Profil")]
+    [SerializeField] private GameObject formNewProfil;
+    [SerializeField] private TMP_InputField inputFieldNameProfil;
+
+
+    private void Awake()
+    {
+        formNewProfil.SetActive(false);
+    }
+
+    private void Start()
+    {
+        _authManager = AuthManager.Instance;
+    }
 
     public void ActiveProfilsUIAccount(Account account)
     {
         gameObject.SetActive(true);
-        StartCoroutine(ActivateAccountWithDelay(account, 1f)); // Délai d'attente de 1 seconde
+        containerTemp.SetActive(true);
+        StartCoroutine(ActivateAccountWithDelay(account, 0.5f)); // Délai d'attente de 1 seconde
     }
 
     private IEnumerator ActivateAccountWithDelay(Account account, float delay)
     {
         Account = account;
-
-        // Forcer un délai avant d'activer le profil
-        yield return new WaitForSeconds(delay);
 
         Transform newProfilT = null;
         if (container.childCount > 1)
@@ -32,13 +49,12 @@ public class ProfilsUI : MonoBehaviour
                 {
                     Transform child = container.GetChild(i);
 
-                    if (child.TryGetComponent(out ProfilUI _pUI)) 
+                    if (child.TryGetComponent(out ProfilUI _pUI))
                     {
-                        if (_pUI.IsNewProfilUI) 
+                        if (_pUI.IsNewProfilUI)
                         {
                             newProfilT = child;
-                            Debug.Log("New Profil");
-                            continue; 
+                            continue;
                         }
                     }
 
@@ -55,6 +71,14 @@ public class ProfilsUI : MonoBehaviour
             // Il doit toujours avoir un enfant en initialisation
             newProfilT = container.GetChild(0);
         }
+        newProfilT.SetAsFirstSibling();
+        newProfilT.gameObject.SetActive(false);
+
+        // Forcer un délai avant d'activer le profil
+        yield return new WaitForSeconds(delay);
+
+        newProfilT.gameObject.SetActive(true);
+        containerTemp.SetActive(false);
 
         // Sauf si le nombre max de subAccount est atteint
         if (Account.SubAccounts.Count >= Account.MaxSubAccounts)
@@ -68,5 +92,19 @@ public class ProfilsUI : MonoBehaviour
             Instantiate(profilUIPrefab, container).SetProfil(subAccount);
         }
         newProfilT?.SetAsLastSibling();
+    }
+
+    // Form New Profil UI
+    public void AddNewProfil()
+    {
+        if (Validators.IsValidName(inputFieldNameProfil.text))
+        {
+            _authManager.AddNewProfil(inputFieldNameProfil.text);
+        }
+        else
+        {
+            // Message d'erreur
+            Debug.LogError("Nom de profil invalide");
+        }
     }
 }
