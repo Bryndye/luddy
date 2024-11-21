@@ -150,6 +150,18 @@ public class Account
         SetDatas();
     }
 
+    public void DeleteProfil(int index)
+    {
+        SubAccounts.RemoveAt(index);
+        SetDatas();
+    }
+
+    public void DeleteProfil(SubAccount subAccount)
+    {
+        SubAccounts.Remove(subAccount);
+        SetDatas();
+    }
+
     public SubAccount GetProfil(int index)
     {
         return SubAccounts[index];

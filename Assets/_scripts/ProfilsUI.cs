@@ -3,9 +3,11 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProfilsUI : MonoBehaviour
 {
+    private CanvasAuthManager _canvasAuthManager;
     private AuthManager _authManager;
 
     [SerializeField] private Account Account;
@@ -26,13 +28,14 @@ public class ProfilsUI : MonoBehaviour
     private void Start()
     {
         _authManager = AuthManager.Instance;
+        _canvasAuthManager = CanvasAuthManager.Instance;
     }
 
     public void ActiveProfilsUIAccount(Account account)
     {
         gameObject.SetActive(true);
         containerTemp.SetActive(true);
-        StartCoroutine(ActivateAccountWithDelay(account, 0.5f)); // Délai d'attente de 1 seconde
+        StartCoroutine(ActivateAccountWithDelay(account, 0.8f)); // Délai d'attente de 1 seconde
     }
 
     private IEnumerator ActivateAccountWithDelay(Account account, float delay)
@@ -89,7 +92,12 @@ public class ProfilsUI : MonoBehaviour
 
         foreach (SubAccount subAccount in Account.SubAccounts)
         {
-            Instantiate(profilUIPrefab, container).SetProfil(subAccount);
+            var profil = Instantiate(profilUIPrefab, container);
+            profil.SetProfil(subAccount);
+
+            // Ajout de l'événement de clic
+            profil.TryGetComponent(out Button _btn);
+            _btn.onClick.AddListener(() => _canvasAuthManager.ActiveProfil(subAccount));
         }
         newProfilT?.SetAsLastSibling();
     }

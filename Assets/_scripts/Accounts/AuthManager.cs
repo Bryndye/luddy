@@ -174,7 +174,6 @@ public class AuthManager : MonoBehaviour
     {
         MyCurrentSubAccount = subAccount ?? subAccount;
         OnSubAccountSignIn?.Invoke();
-        _mainCanvas.SetActive(true);
     }
 
     #endregion

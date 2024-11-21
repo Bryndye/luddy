@@ -21,6 +21,7 @@ public class CanvasAuthManager : MonoBehaviour
 
     public Action<string, string> OnSignInUI;
     public Action<string, string> OnSignUpUI;
+    public Action OnSelectedProfilUI;
 
     private void Awake()
     {
@@ -58,6 +59,21 @@ public class CanvasAuthManager : MonoBehaviour
         {
             AuthUI?.SetActive(true);
         };
+
+        // TitleScreen arrive en premier
+        gameObject.SetActive(false);
+    }
+
+    public void ActiveAuthentification(Action callback)
+    {
+        // Permet d'activer l'écran d'authentification
+        // Et d'appeler des functions une fois l'écran terminé
+        OnSelectedProfilUI = null; // Nettoie les actions précédentes
+        OnSelectedProfilUI = callback;
+
+        // Gestion des écrans
+        gameObject.SetActive(true);
+        MyProfilsUI.gameObject.SetActive(false);
     }
 
     void SignInUI()
@@ -85,6 +101,13 @@ public class CanvasAuthManager : MonoBehaviour
     public void SetActiveProfilsUI(bool active)
     {
         MyProfilsUI.gameObject.SetActive(active);
+    }
+
+    public void ActiveProfil(SubAccount subAccount)
+    {
+        _authManager.SignInSubAccount(subAccount);
+        OnSelectedProfilUI?.Invoke();
+        gameObject.SetActive(false);
     }
     #endregion
 }

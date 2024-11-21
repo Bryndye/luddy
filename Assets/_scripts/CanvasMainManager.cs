@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CanvasManager : MonoBehaviour
+public class CanvasMainManager : MonoBehaviour
 {
-    public static CanvasManager Instance;
+    public static CanvasMainManager Instance;
 
     public Wizard Wizard;
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
+        Debug.Log("CanvasMainManager is awake");
 
         Wizard.Close();
     }

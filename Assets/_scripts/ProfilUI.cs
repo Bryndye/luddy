@@ -23,9 +23,4 @@ public class ProfilUI : MonoBehaviour
         playerName.text = subAccount.Nom;
         //this.image.sprite = null;
     }
-
-    public void UseProfil()
-    {
-        _authManager.SignInSubAccount(mySubAccount);
-    }
 }
