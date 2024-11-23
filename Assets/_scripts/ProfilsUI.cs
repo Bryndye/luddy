@@ -1,6 +1,7 @@
 using Luddy.Validators;
 using System;
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ public class ProfilsUI : MonoBehaviour
     private CanvasAuthManager _canvasAuthManager;
     private AuthManager _authManager;
 
-    [SerializeField] private Account Account;
+    [SerializeField] private Account myAccount;
     [SerializeField] private ProfilUI profilUIPrefab;
     [SerializeField] private Transform container;
     [SerializeField] private GameObject containerTemp;
@@ -31,16 +32,27 @@ public class ProfilsUI : MonoBehaviour
         _canvasAuthManager = CanvasAuthManager.Instance;
     }
 
-    public void ActiveProfilsUIAccount(Account account)
+    public void ActivateAccountWithDelay(Account account)
     {
+        // Obligation d'activer les gameObjects pour pouvoir appeler les fonctions de coroutine
         gameObject.SetActive(true);
         containerTemp.SetActive(true);
-        StartCoroutine(ActivateAccountWithDelay(account, 0.8f)); // Délai d'attente de 1 seconde
+
+        StartCoroutine(ActiveProfilsUIAccount(account, 0.8f)); // Délai d'attente de 1 seconde
     }
 
-    private IEnumerator ActivateAccountWithDelay(Account account, float delay)
+    private void ActiveProfilsUIAccountWithoutDelay()
     {
-        Account = account;
+        // Obligation d'activer les gameObjects pour pouvoir appeler les fonctions de coroutine
+        gameObject.SetActive(true);
+        containerTemp.SetActive(true);
+
+        StartCoroutine(ActiveProfilsUIAccount(myAccount, 0));
+    }
+    
+    private IEnumerator ActiveProfilsUIAccount(Account account, float delay)
+    {
+        myAccount = account;
 
         Transform newProfilT = null;
         if (container.childCount > 1)
@@ -57,11 +69,13 @@ public class ProfilsUI : MonoBehaviour
                         if (_pUI.IsNewProfilUI)
                         {
                             newProfilT = child;
-                            continue;
+                        }
+                        else
+                        {
+                            Destroy(child.gameObject);
                         }
                     }
 
-                    Destroy(child.gameObject);
                 }
                 catch (Exception ex)
                 {
@@ -80,17 +94,13 @@ public class ProfilsUI : MonoBehaviour
         // Forcer un délai avant d'activer le profil
         yield return new WaitForSeconds(delay);
 
-        newProfilT.gameObject.SetActive(true);
         containerTemp.SetActive(false);
 
+        // Pas de nouveau profil disponible
         // Sauf si le nombre max de subAccount est atteint
-        if (Account.SubAccounts.Count >= Account.MaxSubAccounts)
-        {
-            // Pas de nouveau profil disponible
-            Destroy(newProfilT.gameObject);
-        }
+        newProfilT.gameObject.SetActive(myAccount.SubAccounts.Count < myAccount.MaxSubAccounts);
 
-        foreach (SubAccount subAccount in Account.SubAccounts)
+        foreach (SubAccount subAccount in myAccount.SubAccounts)
         {
             var profil = Instantiate(profilUIPrefab, container);
             profil.SetProfil(subAccount);
@@ -98,6 +108,7 @@ public class ProfilsUI : MonoBehaviour
             // Ajout de l'événement de clic
             profil.TryGetComponent(out Button _btn);
             _btn.onClick.AddListener(() => _canvasAuthManager.ActiveProfil(subAccount));
+            profil.DeleteButton.onClick.AddListener(() => DeleteProfil(subAccount));
         }
         newProfilT?.SetAsLastSibling();
     }
@@ -108,11 +119,18 @@ public class ProfilsUI : MonoBehaviour
         if (Validators.IsValidName(inputFieldNameProfil.text))
         {
             _authManager.AddNewProfil(inputFieldNameProfil.text);
+            _canvasAuthManager.ActiveProfil(myAccount.SubAccounts.Last());
         }
         else
         {
             // Message d'erreur
             Debug.LogError("Nom de profil invalide");
         }
+    }
+
+    public void DeleteProfil(SubAccount subAccount)
+    {
+        _authManager.DeleteProfil(subAccount);
+        ActiveProfilsUIAccountWithoutDelay();
     }
 }

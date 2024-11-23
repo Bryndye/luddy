@@ -188,7 +188,11 @@ public class AuthManager : MonoBehaviour
     public void AddNewProfil(string name = null)
     {
         MyAccount.AddNewProfil(name);
-        SignInSubAccount(MyAccount.SubAccounts.Last());
+    }
+
+    public void DeleteProfil(SubAccount subAccount)
+    {
+        MyAccount.DeleteProfil(subAccount);
     }
     #endregion
 }

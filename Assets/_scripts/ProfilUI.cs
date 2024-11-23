@@ -9,11 +9,17 @@ public class ProfilUI : MonoBehaviour
     private SubAccount mySubAccount;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI playerName;
+    [SerializeField] public Button DeleteButton;
     public bool IsNewProfilUI = false;
 
     private void Awake()
     {
         _authManager = AuthManager.Instance;
+
+        if (DeleteButton && IsNewProfilUI)
+        {
+            DeleteButton.gameObject.SetActive(false);
+        }
     }
 
     public void SetProfil(SubAccount subAccount)
