@@ -16,5 +16,19 @@ MonoBehaviour:
   MyLevelType: 0
   Level: 0
   Description: Careful!
-  LevelIdScene: SampleScene
-  DescriptionHelp: Think faster!
+  LevelIdScene: Main
+  ContentCreationList:
+  - MyQuestion: ' ?'
+    MyDescriptionHelp: Think faster!
+    MyQuestionType: 0
+    MyAnswers: []
+  - MyQuestion: ' ?'
+    MyDescriptionHelp: Think faster!
+    MyQuestionType: 0
+    MyAnswers: []
+  - MyQuestion: ' ?'
+    MyDescriptionHelp: Think faster!
+    MyQuestionType: 2
+    MyAnswers:
+    - MyValue: 
+      MyAnswerType: 0

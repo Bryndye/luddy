@@ -16,5 +16,5 @@ MonoBehaviour:
   MyLevelType: 0
   Level: 0
   Description: Careful!
-  LevelIdScene: SampleScene
-  DescriptionHelp: Think faster!
+  LevelIdScene: Main
+  ContentCreationList: []
