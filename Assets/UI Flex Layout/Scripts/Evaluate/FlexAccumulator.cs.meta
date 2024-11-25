@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2dba46d3c4f622044b5517e1dc318045
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244671
+  packageName: UI Flex Layout
+  packageVersion: 1.0.3
+  assetPath: Assets/UI Flex Layout/Scripts/Evaluate/FlexAccumulator.cs
+  uploadId: 623649

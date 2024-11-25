@@ -18,6 +18,7 @@ public class CanvasAuthManager : MonoBehaviour
 
     [Header("Profils Screen")]
     public ProfilsUI MyProfilsUI;
+    public Wizard Wizard;
 
     public Action<string, string> OnSignInUI;
     public Action<string, string> OnSignUpUI;

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f636fccb138cd3c498b0b68f959d95ff
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244671
+  packageName: UI Flex Layout
+  packageVersion: 1.0.3
+  assetPath: Assets/UI Flex Layout/Scripts/Evaluate/FlexEvaluator.cs
+  uploadId: 623649

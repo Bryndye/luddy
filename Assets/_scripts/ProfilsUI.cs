@@ -130,7 +130,10 @@ public class ProfilsUI : MonoBehaviour
 
     public void DeleteProfil(SubAccount subAccount)
     {
-        _authManager.DeleteProfil(subAccount);
-        ActiveProfilsUIAccountWithoutDelay();
+        _canvasAuthManager.Wizard.ActiveWizard(() =>
+        {
+            _authManager.DeleteProfil(subAccount);
+            ActiveProfilsUIAccountWithoutDelay();
+        }, "Attention !", "Voulez-vous vraiment supprimer le profil "+subAccount.Nom+" ? \nToutes les données liées à ce profil seront supprimées et ne pourront plus être récupérées.");
     }
 }

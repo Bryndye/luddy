@@ -7,19 +7,21 @@ public class CanvasMainManager : MonoBehaviour
 {
     public static CanvasMainManager Instance;
 
-    public Wizard Wizard;
+    public WizardLevel Wizard;
 
     void Awake()
     {
         Instance = this;
-        Debug.Log("CanvasMainManager is awake");
 
         Wizard.Close();
     }
 
 
-    public void SetWizard(LevelInfos _levelInfos)
+    public void SetWizard(LevelInfos levelInfos)
     {
-        Wizard.SetInfos(_levelInfos);
+        Wizard.ActiveWizardLevel(() =>
+        {
+            Debug.Log("Lancement de la partie : " + levelInfos.Name);
+        }, levelInfos);
     }
 }

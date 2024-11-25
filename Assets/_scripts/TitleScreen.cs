@@ -4,10 +4,11 @@ public class TitleScreen : MonoBehaviour
 {
     private CanvasAuthManager _canvasAuthManager;
     [SerializeField] private CanvasMainManager _canvasManager;
+    private bool _initialized = false;
 
     void Awake()
     {
-        gameObject.SetActive(true);
+        ActiveTitleScreen();
     }
 
     private void Start()
@@ -17,7 +18,7 @@ public class TitleScreen : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (!_initialized && Input.GetKeyDown(KeyCode.Mouse0))
         {
             _canvasAuthManager.ActiveAuthentification(() =>
             {
@@ -25,5 +26,12 @@ public class TitleScreen : MonoBehaviour
             });
             gameObject.SetActive(false);
         }
+    }
+
+    // La fonction a appelé pour revenir à l'écran titrew
+    public void ActiveTitleScreen()
+    {
+        _initialized = false;
+        gameObject.SetActive(true);
     }
 }

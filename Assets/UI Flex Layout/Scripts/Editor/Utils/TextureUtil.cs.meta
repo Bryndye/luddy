@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0478591442d478d40b59e2f330737a0c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244671
+  packageName: UI Flex Layout
+  packageVersion: 1.0.3
+  assetPath: Assets/UI Flex Layout/Scripts/Editor/Utils/TextureUtil.cs
+  uploadId: 623649

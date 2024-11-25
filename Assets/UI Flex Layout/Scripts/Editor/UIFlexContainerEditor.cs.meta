@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 701806a18f6fc54428f8555d5e3d8c88
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244671
+  packageName: UI Flex Layout
+  packageVersion: 1.0.3
+  assetPath: Assets/UI Flex Layout/Scripts/Editor/UIFlexContainerEditor.cs
+  uploadId: 623649
