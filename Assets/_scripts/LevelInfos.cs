@@ -32,14 +32,14 @@ public enum QuestionType
 }
 public enum AnswerType
 {
-    Vraie, Fausse
+    Vrai, Faux
 }
 
 [Serializable]
 public class Answer
 {
     public string MyValue;
-    public AnswerType MyAnswerType;
+    public AnswerType MyAnswerType = AnswerType.Faux;
 }
 
 [Serializable]

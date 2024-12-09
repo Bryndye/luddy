@@ -21,14 +21,30 @@ MonoBehaviour:
   - MyQuestion: ' ?'
     MyDescriptionHelp: Think faster!
     MyQuestionType: 0
-    MyAnswers: []
+    MyAnswers:
+    - MyValue: yes
+      MyAnswerType: 0
+    - MyValue: no
+      MyAnswerType: 1
+    - MyValue: yes
+      MyAnswerType: 0
+    - MyValue: no
+      MyAnswerType: 1
   - MyQuestion: ' ?'
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 0
-    MyAnswers: []
+    MyQuestionType: 1
+    MyAnswers:
+    - MyValue: no
+      MyAnswerType: 1
+    - MyValue: no
+      MyAnswerType: 1
+    - MyValue: yes
+      MyAnswerType: 0
+    - MyValue: no
+      MyAnswerType: 1
   - MyQuestion: ' ?'
     MyDescriptionHelp: Think faster!
     MyQuestionType: 2
     MyAnswers:
-    - MyValue: 
+    - MyValue: yes
       MyAnswerType: 0

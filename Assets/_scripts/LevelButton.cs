@@ -16,6 +16,6 @@ public class LevelButton : MonoBehaviour
     public void OnClick()
     {
         // Do something
-        CanvasMainManager.Instance?.SetWizard(Infos);
+        CanvasMainManager.Instance?.OpenLevel(Infos);
     }
 }
