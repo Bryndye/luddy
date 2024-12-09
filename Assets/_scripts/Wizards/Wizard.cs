@@ -28,6 +28,9 @@ public class Wizard : MonoBehaviour
 
         onFinished = action;
 
+        // FIX et je ne sais pas comment 
+        gameObject.SetActive(true);
+
         confirmationButton.onClick.RemoveAllListeners();
         confirmationButton.onClick.AddListener(OnConfirmation);
 

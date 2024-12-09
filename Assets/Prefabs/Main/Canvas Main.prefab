@@ -89,8 +89,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6905268247759020547}
-  - component: {fileID: 404007924330592882}
-  - component: {fileID: 4151769243833520014}
   m_Layer: 5
   m_Name: Answers
   m_TagString: Untagged
@@ -117,109 +115,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &404007924330592882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753364547635386627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4476afcd36b88a4083b28de9a0376ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  order: 0
-  flexGrow: 0
-  flexShrink: 1
-  flexBasis:
-    width:
-      percentage: 50
-      pixels: 0
-    height:
-      percentage: 60
-      pixels: 0
-  flexMinimum:
-    width:
-      percentage: 0
-      pixels: 0
-    height:
-      percentage: 0
-      pixels: 0
-  flexMaximum:
-    width:
-      percentage: 0
-      pixels: 0
-    height:
-      percentage: 0
-      pixels: 0
-  flexMinimumEnabled:
-    width: 0
-    height: 0
-  flexMaximumEnabled:
-    width: 0
-    height: 0
-  alignSelfEnabled: 0
-  alignSelf: 0
-  margin:
-    uniform:
-      percentage: 0
-      pixels: 0
-    top:
-      percentage: 0
-      pixels: 0
-    right:
-      percentage: 0
-      pixels: 0
-    bottom:
-      percentage: 0
-      pixels: 0
-    left:
-      percentage: 0
-      pixels: 0
---- !u!114 &4151769243833520014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753364547635386627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d727bd598377f4744b7dd4a71687d31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: 1
-  reversed: 0
-  wrap: 0
-  wrapReversed: 0
-  justifyContent: 1
-  spacingDistribution: {x: 1, y: 0, z: 1}
-  alignContent: 1
-  alignItems: 0
-  minimumGap:
-    width:
-      percentage: 0
-      pixels: 0
-    height:
-      percentage: 0
-      pixels: 10
-  padding:
-    uniform:
-      percentage: 10
-      pixels: 0
-    top:
-      percentage: 0
-      pixels: 0
-    right:
-      percentage: 0
-      pixels: 0
-    bottom:
-      percentage: 0
-      pixels: 0
-    left:
-      percentage: 0
-      pixels: 0
 --- !u!1 &1046360543701132861
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +569,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1621081519326464244}
-  - component: {fileID: 5553409948665593354}
   m_Layer: 5
   m_Name: Contents
   m_TagString: Untagged
@@ -703,49 +597,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5553409948665593354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5242906742417424882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d727bd598377f4744b7dd4a71687d31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: 1
-  reversed: 0
-  wrap: 0
-  wrapReversed: 0
-  justifyContent: 4
-  spacingDistribution: {x: 0.5, y: 1, z: 0.5}
-  alignContent: 1
-  alignItems: 0
-  minimumGap:
-    width:
-      percentage: 0
-      pixels: 0
-    height:
-      percentage: 0
-      pixels: 0
-  padding:
-    uniform:
-      percentage: 0
-      pixels: 0
-    top:
-      percentage: 0
-      pixels: 0
-    right:
-      percentage: 0
-      pixels: 0
-    bottom:
-      percentage: 0
-      pixels: 0
-    left:
-      percentage: 0
-      pixels: 0
 --- !u!1 &6405356417096260607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
+  m_Color: {r: 0.9056604, g: 0.75974834, b: 0.54254186, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

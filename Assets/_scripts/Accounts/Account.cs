@@ -159,6 +159,7 @@ public class Account
     public void DeleteProfil(SubAccount subAccount)
     {
         SubAccounts.Remove(subAccount);
+        Debug.Log("Profil supprimé");
         SetDatas();
     }
 

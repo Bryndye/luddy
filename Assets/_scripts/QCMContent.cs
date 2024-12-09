@@ -33,7 +33,7 @@ public class QCMContent : MonoBehaviour
         OnEndQCM = action;
 
         gameObject.SetActive(true);
-
+        questionIndex = 0;
         NextQuestion();
     }
 
@@ -145,18 +145,25 @@ public class QCMContent : MonoBehaviour
         {
             case QuestionType.MultipleChoice:
                 int count = 0;
+                int countGoodAnswer = 0;
+                foreach (Answer anwser in currentQuestion.MyAnswers)
+                {
+                    if (anwser.MyAnswerType == AnswerType.Vrai)
+                    {
+                        countGoodAnswer++;
+                    }
+                }
                 for (int i = 0; i < toggles.Count; i++)
                 {
                     if (toggles[i].isOn)
                     {
                         isGoodAnswer = currentQuestion.MyAnswers[i].MyAnswerType == AnswerType.Vrai;
                         if (isGoodAnswer)
-                        {
                             count++;
-                            isGoodAnswer = count == currentQuestion.MyAnswers.Count;
-                        }
                     }
                 }
+                if (isGoodAnswer)
+                    isGoodAnswer = count == countGoodAnswer;
                 break;
 
             case QuestionType.UniqueChoice:

@@ -41,9 +41,10 @@ public class CanvasAuthManager : MonoBehaviour
         _authManager = AuthManager.Instance;
 
         // Permet d'activer l'écran des profils
-        _authManager.OnSignIn += MyProfilsUI.ActivateAccountWithDelay;
+        _authManager.OnSignIn += MyProfilsUI.SetSubAccountsProfilsUI;
         _authManager.OnSubAccountSignIn += SetActiveProfilsUIFalse;
 
+        MyProfilsUI.AuthManager = _authManager;
 
         // Valeurs test
         EmailInput.text = "test@example.com";

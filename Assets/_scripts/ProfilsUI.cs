@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class ProfilsUI : MonoBehaviour
 {
     private CanvasAuthManager _canvasAuthManager;
-    private AuthManager _authManager;
+    public AuthManager AuthManager;
 
     [SerializeField] private Account myAccount;
     [SerializeField] private ProfilUI profilUIPrefab;
@@ -18,6 +18,7 @@ public class ProfilsUI : MonoBehaviour
 
     [Header("Form New Profil")]
     [SerializeField] private GameObject formNewProfil;
+    private Transform newProfilGO;
     [SerializeField] private TMP_InputField inputFieldNameProfil;
 
 
@@ -28,33 +29,24 @@ public class ProfilsUI : MonoBehaviour
 
     private void Start()
     {
-        _authManager = AuthManager.Instance;
+        AuthManager = AuthManager.Instance;
         _canvasAuthManager = CanvasAuthManager.Instance;
     }
 
-    public void ActivateAccountWithDelay(Account account)
+    public async void SetSubAccountsProfilsUI(Account account)
     {
         // Obligation d'activer les gameObjects pour pouvoir appeler les fonctions de coroutine
         gameObject.SetActive(true);
         containerTemp.SetActive(true);
 
-        StartCoroutine(ActiveProfilsUIAccount(account, 0.8f)); // Délai d'attente de 1 seconde
-    }
-
-    private void ActiveProfilsUIAccountWithoutDelay()
-    {
-        // Obligation d'activer les gameObjects pour pouvoir appeler les fonctions de coroutine
-        gameObject.SetActive(true);
-        containerTemp.SetActive(true);
-
-        StartCoroutine(ActiveProfilsUIAccount(myAccount, 0));
+        BeforeActiveProfils();
+        await AuthManager.MyAccount.LoadAllDatas();
+        myAccount = AuthManager.MyAccount;
+        AfterGetProfils();
     }
     
-    private IEnumerator ActiveProfilsUIAccount(Account account, float delay)
+    private void BeforeActiveProfils()
     {
-        myAccount = account;
-
-        Transform newProfilT = null;
         if (container.childCount > 1)
         {
 
@@ -68,7 +60,7 @@ public class ProfilsUI : MonoBehaviour
                     {
                         if (_pUI.IsNewProfilUI)
                         {
-                            newProfilT = child;
+                            newProfilGO = child;
                         }
                         else
                         {
@@ -86,19 +78,19 @@ public class ProfilsUI : MonoBehaviour
         else
         {
             // Il doit toujours avoir un enfant en initialisation
-            newProfilT = container.GetChild(0);
+            newProfilGO = container.GetChild(0);
         }
-        newProfilT.SetAsFirstSibling();
-        newProfilT.gameObject.SetActive(false);
+        newProfilGO.SetAsFirstSibling();
+        newProfilGO.gameObject.SetActive(false);
+    }
 
-        // Forcer un délai avant d'activer le profil
-        yield return new WaitForSeconds(delay);
-
+    private void AfterGetProfils()
+    {
         containerTemp.SetActive(false);
 
         // Pas de nouveau profil disponible
         // Sauf si le nombre max de subAccount est atteint
-        newProfilT.gameObject.SetActive(myAccount.SubAccounts.Count < myAccount.MaxSubAccounts);
+        newProfilGO.gameObject.SetActive(myAccount.SubAccounts.Count < myAccount.MaxSubAccounts);
 
         foreach (SubAccount subAccount in myAccount.SubAccounts)
         {
@@ -110,15 +102,16 @@ public class ProfilsUI : MonoBehaviour
             _btn.onClick.AddListener(() => _canvasAuthManager.ActiveProfil(subAccount));
             profil.DeleteButton.onClick.AddListener(() => DeleteProfil(subAccount));
         }
-        newProfilT?.SetAsLastSibling();
+        newProfilGO?.SetAsLastSibling();
     }
+
 
     // Form New Profil UI
     public void AddNewProfil()
     {
         if (Validators.IsValidName(inputFieldNameProfil.text))
         {
-            _authManager.AddNewProfil(inputFieldNameProfil.text);
+            AuthManager.AddNewProfil(inputFieldNameProfil.text);
             _canvasAuthManager.ActiveProfil(myAccount.SubAccounts.Last());
         }
         else
@@ -132,8 +125,11 @@ public class ProfilsUI : MonoBehaviour
     {
         _canvasAuthManager.Wizard.ActiveWizard(() =>
         {
-            _authManager.DeleteProfil(subAccount);
-            ActiveProfilsUIAccountWithoutDelay();
+            AuthManager.DeleteProfil(subAccount);
+            Debug.Log(AuthManager.MyAccount.SubAccounts.Count);
+            BeforeActiveProfils();
+            AfterGetProfils();
+            //SetSubAccountsProfilsUI(null);
         }, "Attention !", "Voulez-vous vraiment supprimer le profil "+subAccount.Nom+" ? \nToutes les données liées à ce profil seront supprimées et ne pourront plus être récupérées.");
     }
 }

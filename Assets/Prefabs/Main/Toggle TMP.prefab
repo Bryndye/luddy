@@ -136,16 +136,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 5004506582557748296, guid: 4ce63fb1ee0143b4bbbd52691f711f7b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -268,7 +268,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 192}
-  m_SizeDelta: {x: 600, y: 50}
+  m_SizeDelta: {x: 600, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4311783752054187070
 MonoBehaviour:
@@ -334,13 +334,13 @@ MonoBehaviour:
   reversed: 0
   wrap: 0
   wrapReversed: 0
-  justifyContent: 0
-  spacingDistribution: {x: 0, y: 0, z: 1}
+  justifyContent: 3
+  spacingDistribution: {x: 0, y: 1, z: 0}
   alignContent: 6
   alignItems: 0
   minimumGap:
     width:
-      percentage: 10
+      percentage: 0
       pixels: 0
     height:
       percentage: 0
@@ -348,7 +348,7 @@ MonoBehaviour:
   padding:
     uniform:
       percentage: 0
-      pixels: 2
+      pixels: 8
     top:
       percentage: 0
       pixels: 0
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
