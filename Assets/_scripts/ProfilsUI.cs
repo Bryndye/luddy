@@ -126,10 +126,8 @@ public class ProfilsUI : MonoBehaviour
         _canvasAuthManager.Wizard.ActiveWizard(() =>
         {
             AuthManager.DeleteProfil(subAccount);
-            Debug.Log(AuthManager.MyAccount.SubAccounts.Count);
             BeforeActiveProfils();
             AfterGetProfils();
-            //SetSubAccountsProfilsUI(null);
         }, "Attention !", "Voulez-vous vraiment supprimer le profil "+subAccount.Nom+" ? \nToutes les données liées à ce profil seront supprimées et ne pourront plus être récupérées.");
     }
 }

@@ -158,9 +158,24 @@ public class Account
 
     public void DeleteProfil(SubAccount subAccount)
     {
-        SubAccounts.Remove(subAccount);
-        Debug.Log("Profil supprimé");
-        SetDatas();
+        if (SubAccounts.Contains(subAccount))
+        {
+            SubAccounts.Remove(subAccount);
+            SetDatas();
+        }
+        else
+        {
+            // Si l'objet n'est pas trouvé, on le recherche par son id
+            foreach (var item in SubAccounts)
+            {
+                if (item.Id == subAccount.Id)
+                {
+                    SubAccounts.Remove(item);
+                    SetDatas();
+                    return;
+                }
+            }
+        }
     }
 
     public SubAccount GetProfil(int index)
