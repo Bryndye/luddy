@@ -30,6 +30,10 @@ public class CanvasAuthManager : MonoBehaviour
 
         SignInButton.onClick.AddListener(SignInUI);
         SignUpButton.onClick.AddListener(SignUpUI);
+
+        // Password Type
+        PasswordInput.contentType = TMP_InputField.ContentType.Password;
+        PasswordInput.asteriskChar = '*';
     }
 
     private void Start()
