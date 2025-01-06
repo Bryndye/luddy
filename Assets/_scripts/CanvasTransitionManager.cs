@@ -6,7 +6,6 @@ using NaughtyAttributes;
 public class CanvasTransitionManager : MonoBehaviour
 {
     public static CanvasTransitionManager Instance;
-    private GameManager gameManager;
 
     [SerializeField] private Animator mAnimator;
 
@@ -25,14 +24,6 @@ public class CanvasTransitionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         mAnimator = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
-        gameManager = GameManager.Instance;
-
-        gameManager.OnLoadScene += TransitionOn;
-        gameManager.OnLoadedScene += TransitionOff;
     }
 
     public void TransitionOn()

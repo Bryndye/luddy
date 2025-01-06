@@ -9,6 +9,9 @@ public class CanvasMainManager : MonoBehaviour
 
     public WizardLevel Wizard;
 
+    [Header("World Map")]
+    [SerializeField] private Transform worldMapContent;
+
     [Header("Level Type")]
     [SerializeField] private GameObject levelsParent;
     [SerializeField] private QCMContent qcmContent;
@@ -20,6 +23,18 @@ public class CanvasMainManager : MonoBehaviour
         Wizard.Close();
 
         levelsParent.SetActive(false);
+    }
+
+    private void Start()
+    {
+        // Force la position de la world map a etre au debut
+        if (worldMapContent)
+        {
+            worldMapContent.position = new Vector3(
+                0, 
+                worldMapContent.position.y, 
+                worldMapContent.position.z);
+        }
     }
 
 

@@ -1133,6 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Wizard: {fileID: 7981247119074166934}
+  worldMapContent: {fileID: 7877592461274244850}
   levelsParent: {fileID: 4036212214224021339}
   qcmContent: {fileID: 3997805504434499345}
 --- !u!1 &7978427516104404916
