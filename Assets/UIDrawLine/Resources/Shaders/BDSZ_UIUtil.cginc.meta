@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 86b59b9dcc3b7f546b778833d699f568
+ShaderIncludeImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174219
+  packageName: UIDrawLine UI line drawing , support windows, MAC, Linux, Android
+    and IOS
+  packageVersion: 1.31
+  assetPath: Assets/hugp1973/UIDrawLine/Resources/Shaders/BDSZ_UIUtil.cginc
+  uploadId: 690427

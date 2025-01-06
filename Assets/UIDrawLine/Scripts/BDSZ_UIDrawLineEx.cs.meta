@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 03d7589d09057e04f8bb16aa179c86de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174219
+  packageName: UIDrawLine UI line drawing , support windows, MAC, Linux, Android
+    and IOS
+  packageVersion: 1.31
+  assetPath: Assets/hugp1973/UIDrawLine/Scripts/BDSZ_UIDrawLineEx.cs
+  uploadId: 690427

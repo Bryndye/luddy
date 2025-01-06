@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6ff5910c276d631489ac2210c36a3e58
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174219
+  packageName: UIDrawLine UI line drawing , support windows, MAC, Linux, Android
+    and IOS
+  packageVersion: 1.31
+  assetPath: Assets/hugp1973/UIDrawLine/Resources/Mask.mat
+  uploadId: 690427

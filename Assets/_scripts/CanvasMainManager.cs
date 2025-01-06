@@ -43,7 +43,7 @@ public class CanvasMainManager : MonoBehaviour
         // Activation du Wizard pour annoncer le niveau
         Wizard.ActiveWizardLevel(() =>
         {
-            Debug.Log("Lancement de la partie : " + levelInfos.Name);
+            Debug.Log("Lancement de la partie : " + levelInfos.LevelId);
             levelsParent.SetActive(true);
 
             // QCM BY DEFAULT

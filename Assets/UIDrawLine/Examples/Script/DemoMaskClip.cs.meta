@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 899ffaf85fec7374786fb2e053c78632
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174219
+  packageName: UIDrawLine UI line drawing , support windows, MAC, Linux, Android
+    and IOS
+  packageVersion: 1.31
+  assetPath: Assets/hugp1973/UIDrawLine/Examples/Script/DemoMaskClip.cs
+  uploadId: 690427

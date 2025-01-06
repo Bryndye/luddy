@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class ProfilsUI : MonoBehaviour
 {
     private CanvasAuthManager _canvasAuthManager;
-    public AuthManager AuthManager;
+    [HideInInspector] public AuthManager AuthManager;
 
     [SerializeField] private Account myAccount;
     [SerializeField] private ProfilUI profilUIPrefab;
@@ -92,15 +92,25 @@ public class ProfilsUI : MonoBehaviour
         // Sauf si le nombre max de subAccount est atteint
         newProfilGO.gameObject.SetActive(myAccount.SubAccounts.Count < myAccount.MaxSubAccounts);
 
+        int index = 0;
         foreach (SubAccount subAccount in myAccount.SubAccounts)
         {
             var profil = Instantiate(profilUIPrefab, container);
             profil.SetProfil(subAccount);
 
-            // Ajout de l'événement de clic
             profil.TryGetComponent(out Button _btn);
-            _btn.onClick.AddListener(() => _canvasAuthManager.ActiveProfil(subAccount));
+            // Si le nombre max de profils est plus petit que le nombre de profil total, on desactive ces profils
+            if (index >= myAccount.MaxSubAccounts)
+                profil.LimitReached();
+
+            // Créer une copie locale de l'index
+            int currentIndex = index;
+
+            // Ajout de l'événement de clic
+            _btn.onClick.AddListener(() => { _canvasAuthManager.ActiveProfil(currentIndex);});
             profil.DeleteButton.onClick.AddListener(() => DeleteProfil(subAccount));
+
+            index++;
         }
         newProfilGO?.SetAsLastSibling();
     }
@@ -112,7 +122,7 @@ public class ProfilsUI : MonoBehaviour
         if (Validators.IsValidName(inputFieldNameProfil.text))
         {
             AuthManager.AddNewProfil(inputFieldNameProfil.text);
-            _canvasAuthManager.ActiveProfil(myAccount.SubAccounts.Last());
+            _canvasAuthManager.ActiveProfil(myAccount.SubAccounts.Count - 1);
         }
         else
         {

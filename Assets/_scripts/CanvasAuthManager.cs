@@ -109,9 +109,9 @@ public class CanvasAuthManager : MonoBehaviour
         MyProfilsUI.gameObject.SetActive(active);
     }
 
-    public void ActiveProfil(SubAccount subAccount)
+    public void ActiveProfil(int id)
     {
-        _authManager.SignInSubAccount(subAccount);
+        _authManager.SignInSubAccount(id);
         OnSelectedProfilUI?.Invoke();
         gameObject.SetActive(false);
     }

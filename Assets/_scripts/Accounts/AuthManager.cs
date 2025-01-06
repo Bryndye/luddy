@@ -16,7 +16,10 @@ public class AuthManager : MonoBehaviour
 
     [BoxGroup("Accounts")]
     public Account MyAccount;
-    public SubAccount MyCurrentSubAccount;
+    public SubAccount MyCurrentSubAccount { get { 
+            return MyAccount.SubAccounts[currentSubAccountId]; 
+    }}
+    private int currentSubAccountId = 0;
     public Action<Account> OnSignIn;
     public Action<Account> OnSignUp;
     public Action OnSubAccountSignIn;
@@ -170,9 +173,11 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    public void SignInSubAccount(SubAccount subAccount = null)
+    public void SignInSubAccount(int id = 0)
     {
-        MyCurrentSubAccount = subAccount ?? subAccount;
+        //MyCurrentSubAccount = subAccount ?? subAccount;
+        Debug.Log(id);
+        currentSubAccountId = id;
         OnSubAccountSignIn?.Invoke();
     }
 

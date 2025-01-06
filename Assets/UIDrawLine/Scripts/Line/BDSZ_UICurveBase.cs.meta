@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: cf55bdcf36f492a4486173698d28d8e5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174219
+  packageName: UIDrawLine UI line drawing , support windows, MAC, Linux, Android
+    and IOS
+  packageVersion: 1.31
+  assetPath: Assets/hugp1973/UIDrawLine/Scripts/Line/BDSZ_UICurveBase.cs
+  uploadId: 690427

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class QCMContent : MonoBehaviour
 {
     Action OnEndQCM;
+    AuthManager authManager;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI question;
@@ -24,8 +25,13 @@ public class QCMContent : MonoBehaviour
     [SerializeField] private int questionIndex = 0;
     public List<GameObject> answers = new List<GameObject>();
     public List<Toggle> toggles = new List<Toggle>();
-    [SerializeField] private TMP_InputField inputFieldAnswer;
+    [Tooltip("Laisser vide, champ automatique")] private TMP_InputField inputFieldAnswer;
+    [SerializeField] private LevelDatasPlayer levelDatasPlayer;
 
+    private void Start()
+    {
+        authManager = AuthManager.Instance;
+    }
 
     public void ActiveQCM(Action action, LevelInfos levelInfos)
     {
@@ -34,6 +40,8 @@ public class QCMContent : MonoBehaviour
 
         gameObject.SetActive(true);
         questionIndex = 0;
+        // Permet d'effacer les anciennes datas
+        levelDatasPlayer = new LevelDatasPlayer(levelInfos);
         NextQuestion();
     }
 
@@ -43,6 +51,8 @@ public class QCMContent : MonoBehaviour
         if (questionIndex >= levelInfos.ContentCreationList.Count)
         {
             Debug.Log("Fin du QCM");
+            // Ajouter ecran de fin avec les stats (levelDatasPlayer)
+            authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
             gameObject.SetActive(false);
             OnEndQCM?.Invoke();
             return;
@@ -187,6 +197,7 @@ public class QCMContent : MonoBehaviour
         }
 
         Debug.Log("Bonne réponse : " + isGoodAnswer);
+        levelDatasPlayer.AddHasPassedQuestion(isGoodAnswer);
 
         NextQuestion();
     }

@@ -18,7 +18,7 @@ public class WizardLevel : Wizard
 
     private void SetContents()
     {
-        title.text = levelInfos.Name;
+        title.text = levelInfos.LevelId.ToString();
         content.text = levelInfos.Description;
     }
 }

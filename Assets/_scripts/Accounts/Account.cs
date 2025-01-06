@@ -12,11 +12,18 @@ public class SubAccount
 {
     public string Id;
     public string Nom;
+    public List<LevelDatasPlayer> MyLevelDatasPlayer;
 
     public SubAccount(string id, string nom)
     {
         Id = id;
         Nom = nom;
+        MyLevelDatasPlayer = new List<LevelDatasPlayer>();
+    }
+
+    public void AddLevelDataPlayer(LevelDatasPlayer levelDatasPlayer)
+    {
+        MyLevelDatasPlayer.Add(levelDatasPlayer);
     }
 }
 

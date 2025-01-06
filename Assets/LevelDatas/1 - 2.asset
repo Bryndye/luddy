@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fb08f545ae6e249a5c7b10626ca2a4, type: 3}
   m_Name: 1 - 2
   m_EditorClassIdentifier: 
-  Name: 1 - 2
+  LevelId: 2
   MyLevelType: 0
   Level: 0
   Description: Careful!

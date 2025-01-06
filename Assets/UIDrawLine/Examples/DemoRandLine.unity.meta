@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e27b5de0aa28a61419ff4f0b1cc2bbca
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 174219
+  packageName: UIDrawLine UI line drawing , support windows, MAC, Linux, Android
+    and IOS
+  packageVersion: 1.31
+  assetPath: Assets/hugp1973/UIDrawLine/Examples/DemoRandLine.unity
+  uploadId: 690427
