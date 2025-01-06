@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,7 +53,25 @@ public class QCMContent : MonoBehaviour
         {
             Debug.Log("Fin du QCM");
             // Ajouter ecran de fin avec les stats (levelDatasPlayer)
-            authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
+
+            // Gestion des datas du level pour le player
+            var level = authManager.MyCurrentSubAccount.MyLevelDatasPlayer.Where(i => i.LevelId == levelInfos.LevelId).FirstOrDefault();
+            if (level != null && level.PourcentagePass < levelDatasPlayer.PourcentagePass)
+            {
+                levelDatasPlayer.IsFinished = IsLevelPassed();
+                authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
+                Debug.Log("Meilleur score");
+            }
+            else
+            {
+                levelDatasPlayer.IsFinished = IsLevelPassed();
+                authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
+                Debug.Log("Pire/Pas de score");
+            }
+            // MAJ des datas
+            authManager.MyAccount.SetDatas();
+
+            // cloturer le level
             gameObject.SetActive(false);
             OnEndQCM?.Invoke();
             return;
@@ -200,5 +219,10 @@ public class QCMContent : MonoBehaviour
         levelDatasPlayer.AddHasPassedQuestion(isGoodAnswer);
 
         NextQuestion();
+    }
+
+    private bool IsLevelPassed()
+    {
+        return levelDatasPlayer.PourcentagePass >= (levelDatasPlayer.PourcentagePass / 100);
     }
 }

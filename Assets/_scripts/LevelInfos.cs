@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Rendering;
 using NaughtyAttributes;
 using System;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public enum LevelType
 {
@@ -24,6 +20,7 @@ public class LevelInfos : ScriptableObject
     public string LevelIdScene;
 
     [Header("In Game")]
+    [MinValue(0), MaxValue(100)] public int PourcentageToPass = 80;
     public List<ContentCreation> ContentCreationList;
 }
 
@@ -60,17 +57,21 @@ public class LevelDatasPlayer
 {
     public int LevelId;
     public bool IsFinished = false;
-    public float pourcentagePass { get {return ComputePourcentage(); } }
+    public float PourcentagePass { get { return ComputePourcentage(); } }
     [Tooltip("Resultats pour chaque question dans l'odre si c'est reussi ou non.")]
     public List<bool> HasPassedQuestions = new List<bool>();
 
     private float ComputePourcentage()
     {
-        return HasPassedQuestions.Count(i => i);
+        if (HasPassedQuestions == null || HasPassedQuestions.Count == 0)
+            return 0; // Éviter une division par zéro
+
+        int trueCount = HasPassedQuestions.Count(i => i);
+        return (trueCount / (float)HasPassedQuestions.Count);
     }
 
-    public LevelDatasPlayer(LevelInfos levelInfos) 
-    { 
+    public LevelDatasPlayer(LevelInfos levelInfos)
+    {
         LevelId = levelInfos.LevelId;
     }
 

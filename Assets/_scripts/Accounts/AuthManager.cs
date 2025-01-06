@@ -176,7 +176,6 @@ public class AuthManager : MonoBehaviour
     public void SignInSubAccount(int id = 0)
     {
         //MyCurrentSubAccount = subAccount ?? subAccount;
-        Debug.Log(id);
         currentSubAccountId = id;
         OnSubAccountSignIn?.Invoke();
     }
