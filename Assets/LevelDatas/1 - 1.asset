@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fb08f545ae6e249a5c7b10626ca2a4, type: 3}
   m_Name: 1 - 1
   m_EditorClassIdentifier: 
-  Name: 1 - 1
+  LevelId: 1
   MyLevelType: 0
-  Level: 0
   Description: Careful!
-  LevelIdScene: Main
+  PourcentageToPass: 80
   ContentCreationList:
-  - MyQuestion: ' ?'
+  - MyQuestion: Il faut mettre yes des ?
     MyDescriptionHelp: Think faster!
     MyQuestionType: 0
     MyAnswers:
@@ -30,7 +29,7 @@ MonoBehaviour:
       MyAnswerType: 0
     - MyValue: no
       MyAnswerType: 1
-  - MyQuestion: ' ?'
+  - MyQuestion: Il faut mettre yes ?
     MyDescriptionHelp: Think faster!
     MyQuestionType: 1
     MyAnswers:
@@ -42,7 +41,7 @@ MonoBehaviour:
       MyAnswerType: 0
     - MyValue: no
       MyAnswerType: 1
-  - MyQuestion: ' ?'
+  - MyQuestion: "Il faut \xE9crire yes ?"
     MyDescriptionHelp: Think faster!
     MyQuestionType: 2
     MyAnswers:

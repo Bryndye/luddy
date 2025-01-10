@@ -14,7 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelId: 2
   MyLevelType: 0
-  Level: 0
-  Description: Careful!
-  LevelIdScene: Main
-  ContentCreationList: []
+  Description: "On va voir si \xE7a va ?"
+  PourcentageToPass: 80
+  ContentCreationList:
+  - MyQuestion: Ca va ?
+    MyDescriptionHelp: 
+    MyQuestionType: 1
+    MyAnswers:
+    - MyValue: Non
+      MyAnswerType: 0
+    - MyValue: Pas sur
+      MyAnswerType: 0
+    - MyValue: Jsp
+      MyAnswerType: 0
+    - MyValue: Je taime
+      MyAnswerType: 0

@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ public class SubAccount
 
     public void AddLevelDataPlayer(LevelDatasPlayer levelDatasPlayer)
     {
+        if (MyLevelDatasPlayer.Any(x => x.LevelId == levelDatasPlayer.LevelId))
+        {
+            MyLevelDatasPlayer.Remove(MyLevelDatasPlayer.Find(x => x.LevelId == levelDatasPlayer.LevelId));
+        }
         MyLevelDatasPlayer.Add(levelDatasPlayer);
     }
 }

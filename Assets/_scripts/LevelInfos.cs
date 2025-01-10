@@ -14,10 +14,7 @@ public class LevelInfos : ScriptableObject
     [Header("General")]
     public int LevelId = 1;
     public LevelType MyLevelType;
-    public int Level = 0;
     public string Description = "Careful!";
-    [Scene]
-    public string LevelIdScene;
 
     [Header("In Game")]
     [MinValue(0), MaxValue(100)] public int PourcentageToPass = 80;

@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelId: 3
   MyLevelType: 0
-  Level: 0
   Description: Careful!
-  LevelIdScene: Main
-  ContentCreationList: []
+  PourcentageToPass: 80
+  ContentCreationList:
+  - MyQuestion: 
+    MyDescriptionHelp: 
+    MyQuestionType: 2
+    MyAnswers:
+    - MyValue: 
+      MyAnswerType: 0

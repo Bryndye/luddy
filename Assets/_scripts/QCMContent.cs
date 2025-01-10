@@ -83,8 +83,6 @@ public class QCMContent : MonoBehaviour
         }
         else
         {
-            levelDatasPlayer.IsFinished = IsLevelPassed();
-            authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
             Debug.Log("Pire/Pas de score");
         }
         // MAJ des datas
