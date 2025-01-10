@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Luddy.Children;
 
 public class QCMContent : MonoBehaviour
 {
@@ -29,6 +30,12 @@ public class QCMContent : MonoBehaviour
     [Tooltip("Laisser vide, champ automatique")] private TMP_InputField inputFieldAnswer;
     [SerializeField] private LevelDatasPlayer levelDatasPlayer;
 
+    [Header("Final/ Reveal")]
+    [SerializeField] private GameObject revealParent;
+    [SerializeField] private AnswerReveal AnswerRevealPrefab;
+    [SerializeField] private Transform contentAnswerReveal;
+    [SerializeField] private TextMeshProUGUI textEndReveal;
+
     private void Start()
     {
         authManager = AuthManager.Instance;
@@ -40,6 +47,7 @@ public class QCMContent : MonoBehaviour
         OnEndQCM = action;
 
         gameObject.SetActive(true);
+        revealParent.SetActive(false);
         questionIndex = 0;
         // Permet d'effacer les anciennes datas
         levelDatasPlayer = new LevelDatasPlayer(levelInfos);
@@ -51,35 +59,55 @@ public class QCMContent : MonoBehaviour
         // questionIndex 
         if (questionIndex >= levelInfos.ContentCreationList.Count)
         {
-            Debug.Log("Fin du QCM");
-            // Ajouter ecran de fin avec les stats (levelDatasPlayer)
-
-            // Gestion des datas du level pour le player
-            var level = authManager.MyCurrentSubAccount.MyLevelDatasPlayer.Where(i => i.LevelId == levelInfos.LevelId).FirstOrDefault();
-            if (level != null && level.PourcentagePass < levelDatasPlayer.PourcentagePass)
-            {
-                levelDatasPlayer.IsFinished = IsLevelPassed();
-                authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
-                Debug.Log("Meilleur score");
-            }
-            else
-            {
-                levelDatasPlayer.IsFinished = IsLevelPassed();
-                authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
-                Debug.Log("Pire/Pas de score");
-            }
-            // MAJ des datas
-            authManager.MyAccount.SetDatas();
-
-            // cloturer le level
-            gameObject.SetActive(false);
-            OnEndQCM?.Invoke();
+            ActiveAnswerReveal();
             return;
         }
         currentQuestion = levelInfos.ContentCreationList[questionIndex];
         SetDatasInContent();
 
         questionIndex++;
+    }
+
+    private void ActiveAnswerReveal()
+    {
+        Debug.Log("Fin du QCM");
+        // Ajouter ecran de fin avec les stats (levelDatasPlayer)
+
+        // Gestion des datas du level pour le player
+        var level = authManager.MyCurrentSubAccount.MyLevelDatasPlayer.Where(i => i.LevelId == levelInfos.LevelId).FirstOrDefault();
+        if (level != null && level.PourcentagePass < levelDatasPlayer.PourcentagePass)
+        {
+            levelDatasPlayer.IsFinished = IsLevelPassed();
+            authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
+            Debug.Log("Meilleur score");
+        }
+        else
+        {
+            levelDatasPlayer.IsFinished = IsLevelPassed();
+            authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
+            Debug.Log("Pire/Pas de score");
+        }
+        // MAJ des datas
+        authManager.MyAccount.SetDatas();
+
+        // Création des réponses pour le joueur
+        for (int i = 0; i < contentAnswerReveal.childCount; i++)
+        {
+            Destroy(contentAnswerReveal.GetChild(i));
+        }
+
+        for (int i = 0; i < levelInfos.ContentCreationList.Count; i++)
+        {
+            var _a = Instantiate(AnswerRevealPrefab, contentAnswerReveal);
+            _a.SetAnswer(levelDatasPlayer.HasPassedQuestions[i], 
+                null,
+                levelInfos.ContentCreationList[i].GetRightAnswersString());
+        }
+
+        textEndReveal.text = IsLevelPassed() ? "Bravo ! \n Tu as réussi le niveau !" : 
+            "Dommage...\n Retente et tu réussira !";
+
+        revealParent.SetActive(true);
     }
 
     private void SetDatasInContent()
@@ -223,6 +251,13 @@ public class QCMContent : MonoBehaviour
 
     private bool IsLevelPassed()
     {
-        return levelDatasPlayer.PourcentagePass >= (levelDatasPlayer.PourcentagePass / 100);
+        return levelDatasPlayer.PourcentagePass >= ((float)levelInfos.PourcentageToPass / 100);
+    }
+
+    public void EndQCM()
+    {
+        // cloturer le level
+        gameObject.SetActive(false);
+        OnEndQCM?.Invoke();
     }
 }

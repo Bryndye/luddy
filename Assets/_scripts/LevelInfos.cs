@@ -49,7 +49,28 @@ public class ContentCreation
 
     [Tooltip("Si c'est en unique choice, mettre 1 seule valeur dans la liste et en Vraie.")]
     public List<Answer> MyAnswers;
+    public List<Answer> GetRightAnswers()
+    {
+        List<Answer> rightAnswers = new List<Answer>();
+        foreach (Answer answer in MyAnswers)
+        {
+            if (answer.MyAnswerType == AnswerType.Vrai)
+            {
+                rightAnswers.Add(answer);
+            }
+        }
+        return rightAnswers;
+    }
 
+    public string GetRightAnswersString()
+    {
+        string answer = "";
+        foreach (Answer item in GetRightAnswers())
+        {
+            answer += item.MyValue.ToString() + "\n";
+        }
+        return answer;
+    }
 }
 
 [Serializable]

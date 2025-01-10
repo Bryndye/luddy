@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WizardLevel : Wizard
 {
@@ -8,9 +9,11 @@ public class WizardLevel : Wizard
     [SerializeField] private LevelInfos levelInfos;
 
     [Header("Stars")]
-    [SerializeField] private GameObject star;
-    [SerializeField] private GameObject star1;
-    [SerializeField] private GameObject star2;
+    [SerializeField] private Color activeStar;
+    [SerializeField] private Color desactiveStar;
+    [SerializeField] private Image star;
+    [SerializeField] private Image star1;
+    [SerializeField] private Image star2;
 
     public void ActiveWizardLevel(Action action, LevelInfos levelInfos)
     {
@@ -61,8 +64,8 @@ public class WizardLevel : Wizard
     /// </summary>
     private void SetStarsVisibility(bool starVisible, bool star1Visible, bool star2Visible)
     {
-        star.SetActive(starVisible);
-        star1.SetActive(star1Visible);
-        star2.SetActive(star2Visible);
+        star.color = starVisible == true ? activeStar : desactiveStar;
+        star1.color = star1Visible == true ? activeStar : desactiveStar;
+        star2.color = star2Visible == true ? activeStar : desactiveStar;
     }
 }
