@@ -82,6 +82,18 @@ public class CanvasAuthManager : MonoBehaviour
         MyProfilsUI.gameObject.SetActive(false);
     }
 
+    public void ActiveSelectionProfil(Action callback)
+    {
+        // Permet d'activer l'écran d'authentification
+        // Et d'appeler des functions une fois l'écran terminé
+        OnSelectedProfilUI = null; // Nettoie les actions précédentes
+        OnSelectedProfilUI = callback;
+
+        // Gestion des écrans
+        gameObject.SetActive(true);
+        MyProfilsUI.gameObject.SetActive(true);
+    }
+
     void SignInUI()
     {
         string email = EmailInput.text;
