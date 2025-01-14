@@ -107,7 +107,9 @@ public class ProfilsUI : MonoBehaviour
             int currentIndex = index;
 
             // Ajout de l'événement de clic
-            _btn.onClick.AddListener(() => { _canvasAuthManager.ActiveProfil(currentIndex);});
+            _btn.onClick.AddListener(() => { 
+                CanvasTransitionManager.Instance.PlayTransition(() => _canvasAuthManager.ActiveProfil(currentIndex));
+            });
             profil.DeleteButton.onClick.AddListener(() => DeleteProfil(subAccount));
 
             index++;

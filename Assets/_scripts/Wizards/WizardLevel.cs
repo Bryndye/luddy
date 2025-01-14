@@ -19,8 +19,8 @@ public class WizardLevel : Wizard
     {
         // Set infos
         this.levelInfos = levelInfos;
-
-        ActiveWizard(action);
+        Action newAction = () => CanvasTransitionManager.Instance.PlayTransition(action);
+        ActiveWizard(newAction);
 
         SetContents();
         SetStars();

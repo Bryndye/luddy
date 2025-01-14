@@ -15,6 +15,7 @@ public class CanvasTransitionManager : MonoBehaviour
     private string enterParam;
     [AnimatorParam("mAnimator"), SerializeField]
     private string exitParam;
+    private bool isTransitionning = false;
     private Action OnAnimationEnd;
 
     private void Awake()
@@ -32,8 +33,9 @@ public class CanvasTransitionManager : MonoBehaviour
 
     public void PlayTransition(Action callback)
     {
-        Transitions();
         OnAnimationEnd = callback;
+        isTransitionning = true;
+        Transitions();
     }
 
     public void TransitionOn()
@@ -44,7 +46,6 @@ public class CanvasTransitionManager : MonoBehaviour
     public void TransitionOff()
     {
         mAnimator?.SetTrigger(exitParam);
-        OnAnimationEnd?.Invoke();
     }
 
     private void Transitions()
@@ -53,16 +54,21 @@ public class CanvasTransitionManager : MonoBehaviour
         TransitionOff();
     }
 
+    public void KeyAnimationEvent()
+    {
+        if (isTransitionning) {
+            OnAnimationEnd?.Invoke();
+            isTransitionning = false;
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Transitions();
-        }
-
-        if (stateInfo.normalizedTime >= 1 && stateInfo.IsName(enterParam) || stateInfo.IsName(exitParam))
-        {
-            Debug.Log("L'animation est en cours.");
+            PlayTransition(()=>{
+                Debug.Log("Fin anim");
+            });
         }
     }
 }
