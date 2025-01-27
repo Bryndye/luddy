@@ -20,6 +20,7 @@ public class ProfilsUI : MonoBehaviour
     [SerializeField] private GameObject formNewProfil;
     private Transform newProfilGO;
     [SerializeField] private TMP_InputField inputFieldNameProfil;
+    bool isLoading = false;
 
 
     private void Awake()
@@ -91,8 +92,6 @@ public class ProfilsUI : MonoBehaviour
         // Pas de nouveau profil disponible
         // Sauf si le nombre max de subAccount est atteint
         newProfilGO.gameObject.SetActive(myAccount.SubAccounts.Count < myAccount.MaxSubAccounts);
-        Debug.Log(myAccount.SubAccounts.Count);
-        Debug.Log(myAccount.MaxSubAccounts);
 
         int index = 0;
         foreach (SubAccount subAccount in myAccount.SubAccounts)
@@ -109,7 +108,8 @@ public class ProfilsUI : MonoBehaviour
             int currentIndex = index;
 
             // Ajout de l'événement de clic
-            _btn.onClick.AddListener(() => { 
+            _btn.onClick.AddListener(() => {
+// isLoading A AJOUTER POUR EVITER UN DOUBLE CHARGEMENT DE PROFIL
                 CanvasTransitionManager.Instance.PlayTransition(() => _canvasAuthManager.ActiveProfil(currentIndex));
             });
             profil.DeleteButton.onClick.AddListener(() => DeleteProfil(subAccount));

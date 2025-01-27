@@ -21,7 +21,11 @@ public class ProfilUI : MonoBehaviour
         if (DeleteButton && IsNewProfilUI)
         {
             DeleteButton.gameObject.SetActive(false);
-        } 
+        }
+        if (IsNewProfilUI)
+        {
+            image.gameObject.SetActive(false);
+        }
 
         myButton = GetComponent<Button>();
         limitReachedSubaccount.gameObject.SetActive(false);
