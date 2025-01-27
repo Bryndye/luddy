@@ -92,6 +92,7 @@ public class CanvasAuthManager : MonoBehaviour
         // Gestion des écrans
         gameObject.SetActive(true);
         MyProfilsUI.gameObject.SetActive(true);
+        MyProfilsUI.SetSubAccountsProfilsUI(_authManager.MyAccount);
     }
 
     void SignInUI()

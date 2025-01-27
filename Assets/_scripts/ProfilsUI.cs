@@ -91,6 +91,8 @@ public class ProfilsUI : MonoBehaviour
         // Pas de nouveau profil disponible
         // Sauf si le nombre max de subAccount est atteint
         newProfilGO.gameObject.SetActive(myAccount.SubAccounts.Count < myAccount.MaxSubAccounts);
+        Debug.Log(myAccount.SubAccounts.Count);
+        Debug.Log(myAccount.MaxSubAccounts);
 
         int index = 0;
         foreach (SubAccount subAccount in myAccount.SubAccounts)

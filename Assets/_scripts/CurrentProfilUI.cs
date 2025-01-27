@@ -22,7 +22,9 @@ public class CurrentProfilUI : MonoBehaviour
     
     public void SetContent()
     {
-        profilName.text = authManager.MyCurrentSubAccount.Nom.ToString();
+        bool isSubscribed = authManager.MyAccount.isSubscribed;
+        string sub = isSubscribed ? "\n Abonné" : "";
+        profilName.text = authManager.MyCurrentSubAccount.Nom.ToString() + sub;
     }
 
 

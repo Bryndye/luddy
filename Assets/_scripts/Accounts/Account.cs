@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.Services.CloudSave;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 [Serializable]
 public class SubAccount
@@ -40,6 +39,10 @@ public class Account
 
     public List<SubAccount> SubAccounts = new List<SubAccount>();
     public int MaxSubAccounts = 2;
+
+    public bool isSubscribed = false;
+    public DateTime timeToSubscribed;
+    public DateTime timeEndSubscribed;
 
     public Account(string _id)
     {
@@ -102,6 +105,11 @@ public class Account
 
             SubAccounts = _account.SubAccounts;
             MaxSubAccounts = _account.MaxSubAccounts;
+            isSubscribed = _account.isSubscribed;
+            timeToSubscribed = _account.timeToSubscribed;
+            timeEndSubscribed = _account.timeEndSubscribed;
+
+            VerifySubscription();
 
             return null;
 
@@ -193,6 +201,37 @@ public class Account
     public SubAccount GetProfil(int index)
     {
         return SubAccounts[index];
+    }
+
+
+    public void SetSubscription(bool subscribed)
+    {
+        isSubscribed = subscribed;
+        string state = subscribed ? "on" : "off";
+        Debug.Log("L'état de votre abonnement est : " + state);
+        if (subscribed) { 
+            timeToSubscribed = DateTime.Now;
+            timeEndSubscribed = timeToSubscribed;
+            timeEndSubscribed.AddYears(1);
+            MaxSubAccounts = 3;
+        }
+        else
+        {
+            timeToSubscribed = DateTime.MinValue;
+            timeEndSubscribed = timeToSubscribed;
+            MaxSubAccounts = 2;
+        }
+        SetDatas();
+    }
+
+    private void VerifySubscription()
+    {
+        if (!isSubscribed) return;
+
+        if (timeToSubscribed > timeEndSubscribed)
+        {
+            SetSubscription(false);
+        }
     }
     #endregion
 }

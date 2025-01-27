@@ -20,4 +20,18 @@ public class Parameter : MonoBehaviour
             gameObject.SetActive(false);
         });
     }
+
+    public void SubscribedButton(bool toSubscribed)
+    {
+        if (toSubscribed)
+        {
+            SubscriptionManager.Instance.BuySubscription();
+        }
+        else
+        {
+            SubscriptionManager.Instance.CancelSubscription();
+        }
+
+        currentProfilUI.SetContent();
+    }
 }
