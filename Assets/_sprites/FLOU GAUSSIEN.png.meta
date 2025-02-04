@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FLOU GAUSSIEN_0: -5307526490278517271
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
