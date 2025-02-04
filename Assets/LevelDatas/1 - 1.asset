@@ -17,33 +17,93 @@ MonoBehaviour:
   Description: Careful!
   PourcentageToPass: 80
   ContentCreationList:
-  - MyQuestion: Il faut mettre yes des ?
-    MyDescriptionHelp: Think faster!
-    MyQuestionType: 0
-    MyAnswers:
-    - MyValue: yes
-      MyAnswerType: 0
-    - MyValue: no
-      MyAnswerType: 1
-    - MyValue: yes
-      MyAnswerType: 0
-    - MyValue: no
-      MyAnswerType: 1
-  - MyQuestion: Il faut mettre yes ?
+  - MyQuestion: "Un mage a laiss\xE9 un message cod\xE9. Peux-tu m\u2019aider \xE0
+      le lire ?"
     MyDescriptionHelp: Think faster!
     MyQuestionType: 1
     MyAnswers:
-    - MyValue: no
+    - MyValue: Il creuse
       MyAnswerType: 1
-    - MyValue: no
-      MyAnswerType: 1
-    - MyValue: yes
+    - MyValue: Il saute
       MyAnswerType: 0
-    - MyValue: no
+    - MyValue: Il mange
       MyAnswerType: 1
-  - MyQuestion: "Il faut \xE9crire yes ?"
+  - MyQuestion: 'Lis cette liste de mots et dis lequel ne correspond pas : chat,
+      chien, maison, lapin.'
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 2
+    MyQuestionType: 1
     MyAnswers:
-    - MyValue: yes
+    - MyValue: Chat
+      MyAnswerType: 1
+    - MyValue: Maison
+      MyAnswerType: 0
+    - MyValue: Lapin
+      MyAnswerType: 1
+  - MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
+      lumineuses en qu\xEAte d\u2019une myst\xE9rieuse algue bioluminescente.\"\nLesquels
+      riment avec \"voiture\" ?"
+    MyDescriptionHelp: Think faster!
+    MyQuestionType: 0
+    MyAnswers:
+    - MyValue: Nature
+      MyAnswerType: 0
+    - MyValue: Mur
+      MyAnswerType: 0
+    - MyValue: Amour
+      MyAnswerType: 1
+  - MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
+      lumineuses en qu\xEAte d\u2019une myst\xE9rieuse algue bioluminescente.\"\nQuel
+      mot commence par le m\xEAme son que \"soleil\" ?"
+    MyDescriptionHelp: Think faster!
+    MyQuestionType: 1
+    MyAnswers:
+    - MyValue: Sable
+      MyAnswerType: 0
+    - MyValue: Mer
+      MyAnswerType: 1
+    - MyValue: Arbre
+      MyAnswerType: 1
+  - MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
+      lumineuses en qu\xEAte d\u2019une myst\xE9rieuse algue bioluminescente.\"\nQuels
+      mots riment avec \"g\xE9n\xE9rosit\xE9\" ?"
+    MyDescriptionHelp: Think faster!
+    MyQuestionType: 0
+    MyAnswers:
+    - MyValue: "Complexit\xE9"
+      MyAnswerType: 0
+    - MyValue: "L\xE9galit\xE9"
+      MyAnswerType: 0
+    - MyValue: "Beaut\xE9"
+      MyAnswerType: 0
+  - MyQuestion: "Pour trouver un tr\xE9sor, tu dois suivre un chemin myst\xE9rieux."
+    MyDescriptionHelp: Think faster!
+    MyQuestionType: 1
+    MyAnswers:
+    - MyValue: 6
+      MyAnswerType: 1
+    - MyValue: 5
+      MyAnswerType: 1
+    - MyValue: 4
+      MyAnswerType: 0
+  - MyQuestion: "Si tu avances de 3 cases vers le haut, puis 2 vers la gauche, o\xF9
+      arrives-tu si tu es en (4,4) ?"
+    MyDescriptionHelp: Think faster!
+    MyQuestionType: 1
+    MyAnswers:
+    - MyValue: (1,4)
+      MyAnswerType: 1
+    - MyValue: (2,7)
+      MyAnswerType: 1
+    - MyValue: (4,1)
+      MyAnswerType: 0
+  - MyQuestion: "Si tu avances de 3 cases vers le haut, puis 2 vers la gauche, o\xF9
+      arrives-tu si tu es en (4,4) ?"
+    MyDescriptionHelp: Think faster!
+    MyQuestionType: 1
+    MyAnswers:
+    - MyValue: 6
+      MyAnswerType: 1
+    - MyValue: 5
+      MyAnswerType: 1
+    - MyValue: 4
       MyAnswerType: 0

@@ -40,6 +40,7 @@ public class Answer
 [Serializable]
 public class ContentCreation
 {
+    [TextArea(3, 10)]
     public string MyQuestion = " ?";
     public string MyDescriptionHelp = "Think faster!";
     public QuestionType MyQuestionType;
