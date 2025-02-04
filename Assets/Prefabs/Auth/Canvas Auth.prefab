@@ -1209,6 +1209,7 @@ MonoBehaviour:
   myAccount:
     SubAccounts: []
     MaxSubAccounts: 0
+    isSubscribed: 0
   profilUIPrefab: {fileID: 1784457682554353676, guid: 29d44d99b01629c4a80b98757d2c5cb5, type: 3}
   container: {fileID: 6022862455714129287}
   containerTemp: {fileID: 8739776237282149721}
