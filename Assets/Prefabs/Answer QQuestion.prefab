@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7503596967069179819
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33,10 +33,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6896295161070354405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 116.899994, y: -50}
+  m_SizeDelta: {x: 217.79999, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &726804568717551484
 CanvasRenderer:
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.65
+  m_fontSize: 61.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -290,15 +290,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.65
+  m_fontSize: 61.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   flexShrink: 1
   flexBasis:
     width:
-      percentage: 45
+      percentage: 100
       pixels: 0
     height:
       percentage: 100
@@ -412,7 +412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1760528344297723437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -427,10 +427,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6896295161070354405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 31.199997, y: -75}
+  m_SizeDelta: {x: 46.400005, y: 134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7739569695776313480
 CanvasRenderer:
@@ -462,7 +462,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -6231044458718751821, guid: 0cde816a300f33d40a90185190f45c15, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -542,6 +542,9 @@ GameObject:
   - component: {fileID: 1798467833462865662}
   - component: {fileID: 5842336931012447388}
   - component: {fileID: 1794399501240142896}
+  - component: {fileID: 9149746725166746723}
+  - component: {fileID: 7222742104312085899}
+  - component: {fileID: 2600964299552532512}
   m_Layer: 5
   m_Name: Answer QQuestion
   m_TagString: Untagged
@@ -566,10 +569,10 @@ RectTransform:
   - {fileID: 7582304036074830732}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -597, y: -272}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1798467833462865662
 MonoBehaviour:
@@ -592,7 +595,7 @@ MonoBehaviour:
       pixels: 0
     height:
       percentage: 0
-      pixels: 50
+      pixels: 100
   flexMinimum:
     width:
       percentage: 0
@@ -627,7 +630,7 @@ MonoBehaviour:
       pixels: 0
     bottom:
       percentage: 0
-      pixels: 0
+      pixels: 16
     left:
       percentage: 0
       pixels: 0
@@ -649,8 +652,8 @@ MonoBehaviour:
   wrapReversed: 0
   justifyContent: 3
   spacingDistribution: {x: 0, y: 1, z: 0}
-  alignContent: 6
-  alignItems: 0
+  alignContent: 1
+  alignItems: 2
   minimumGap:
     width:
       percentage: 0
@@ -661,7 +664,7 @@ MonoBehaviour:
   padding:
     uniform:
       percentage: 0
-      pixels: 0
+      pixels: 8
     top:
       percentage: 0
       pixels: 0
@@ -689,3 +692,57 @@ MonoBehaviour:
   imageIsCorrect: {fileID: 6429873615016520504}
   myAnswer: {fileID: 1836655454303052052}
   theAnswer: {fileID: 7866449342262257789}
+  correct: {r: 1, g: 0.11792451, b: 0.11792451, a: 1}
+  error: {r: 0.39402956, g: 0.8207547, b: 0.22841759, a: 1}
+--- !u!222 &9149746725166746723
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730063172612089106}
+  m_CullTransparentMesh: 1
+--- !u!114 &7222742104312085899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730063172612089106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9921569, g: 0.7294118, b: 0.21960786, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -5483215198695101708, guid: 8212d702d98213141b967387b4fd10fa, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2600964299552532512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730063172612089106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 16
+  image: {fileID: 7222742104312085899}

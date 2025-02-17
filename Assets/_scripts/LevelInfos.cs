@@ -19,11 +19,22 @@ public class LevelInfos : ScriptableObject
     [Header("In Game")]
     [MinValue(0), MaxValue(100)] public int PourcentageToPass = 80;
     public List<ContentCreation> ContentCreationList;
+
+    public float AverageTimeToFinish()
+    {
+        float _averageTime = 0f;
+        foreach (ContentCreation _contentCreation in ContentCreationList)
+        {
+            _averageTime += _contentCreation.AverageTimeToFinish;
+        }
+
+        return _averageTime / ContentCreationList.Count;
+    }
 }
 
 public enum QuestionType
 {
-    MultipleChoice, UniqueChoice, Input
+    MultipleChoice, UniqueChoice, Input, Void
 }
 public enum AnswerType
 {
@@ -40,12 +51,14 @@ public class Answer
 [Serializable]
 public class ContentCreation
 {
+    public QuestionType MyQuestionType;
     [TextArea(3, 10)]
     public string MyQuestion = " ?";
     public string MyDescriptionHelp = "Think faster!";
-    public QuestionType MyQuestionType;
+    [ShowAssetPreview]
+    public Sprite MyIllustration;
 
-    [Tooltip("Si c'est en unique choice, mettre 1 seule valeur dans la liste et en Vraie.")]
+    [Tooltip("Si c'est en unique choice, mettre 1 seule valeur dans la liste et en Vraie."), HideIf("MyQuestionType", QuestionType.Void)]
     public List<Answer> MyAnswers;
     public List<Answer> GetRightAnswers()
     {
@@ -69,6 +82,9 @@ public class ContentCreation
         }
         return answer;
     }
+
+    [BoxGroup("Datas To Analyze"), Tooltip("Average time in second to finish this question")]
+    public float AverageTimeToFinish = 15f;
 }
 
 [Serializable]
@@ -79,6 +95,8 @@ public class LevelDatasPlayer
     public float PourcentagePass { get { return ComputePourcentage(); } }
     [Tooltip("Resultats pour chaque question dans l'odre si c'est reussi ou non.")]
     public List<bool> HasPassedQuestions = new List<bool>();
+    public float AverageTime { get { return ComputeAverageTime(); } }
+    public List<float> TimeForEachQuestions = new List<float>();
 
     private float ComputePourcentage()
     {
@@ -89,6 +107,17 @@ public class LevelDatasPlayer
         return (trueCount / (float)HasPassedQuestions.Count);
     }
 
+    public float ComputeAverageTime()
+    {
+        float averageTime = 0;
+        
+        foreach (float timeQuestion in TimeForEachQuestions)
+        {
+            averageTime += timeQuestion;
+        }
+        return averageTime / TimeForEachQuestions.Count;
+    }
+
     public LevelDatasPlayer(LevelInfos levelInfos)
     {
         LevelId = levelInfos.LevelId;
@@ -97,5 +126,10 @@ public class LevelDatasPlayer
     public void AddHasPassedQuestion(bool hasPassed)
     {
         HasPassedQuestions.Add(hasPassed);
+    }
+
+    public void AddTime(float time)
+    {
+        TimeForEachQuestions.Add(time);
     }
 }

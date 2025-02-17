@@ -15,6 +15,7 @@ public class QCMContent : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI question;
     [SerializeField] private GameObject answersParent;
+    [SerializeField] private Image illustration;
 
     [Header("Prefabs réponse")]
     [SerializeField] private Toggle togglePrefab;
@@ -29,6 +30,7 @@ public class QCMContent : MonoBehaviour
     public List<Toggle> toggles = new List<Toggle>();
     [Tooltip("Laisser vide, champ automatique")] private TMP_InputField inputFieldAnswer;
     [SerializeField] private LevelDatasPlayer levelDatasPlayer;
+    private DateTime questionStarted;
 
     [Header("Final/ Reveal")]
     [SerializeField] private GameObject revealParent;
@@ -81,12 +83,18 @@ public class QCMContent : MonoBehaviour
             authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
             Debug.Log("Meilleur score");
         }
-        else
+        else if (level != null)
         {
-            Debug.Log("Pire/Pas de score");
+            Debug.Log("Pire score");
         }
-        // MAJ des datas
-        authManager.MyAccount.SetDatas();
+        else if (level == null)
+        {
+            levelDatasPlayer.IsFinished = IsLevelPassed();
+            authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
+            // time deja enregistre
+        }
+            // MAJ des datas
+            authManager.MyAccount.SetDatas();
 
         // Création des réponses pour le joueur
         for (int i = 0; i < contentAnswerReveal.childCount; i++)
@@ -96,6 +104,10 @@ public class QCMContent : MonoBehaviour
 
         for (int i = 0; i < levelInfos.ContentCreationList.Count; i++)
         {
+            // Passer la réponse quand c'est une question Void
+            if (levelInfos.ContentCreationList[i].MyQuestionType == QuestionType.Void)
+                continue;
+
             var _a = Instantiate(AnswerRevealPrefab, contentAnswerReveal);
             _a.SetAnswer(levelDatasPlayer.HasPassedQuestions[i], 
                 null,
@@ -105,12 +117,28 @@ public class QCMContent : MonoBehaviour
         textEndReveal.text = IsLevelPassed() ? "Bravo ! \n Tu as réussi le niveau !" : 
             "Dommage...\n Retente et tu réussira !";
 
+        // Average time for this level
+        // TEMPS AFFICHAGE TEXTE
+        textEndReveal.text += "\n Ton temps :" + AverageTimeForThisLevel() + "\n Le temps à faire : " + levelInfos.AverageTimeToFinish();
+
         revealParent.SetActive(true);
     }
 
     private void SetDatasInContent()
     {
         question.text = currentQuestion.MyQuestion;
+        if (currentQuestion.MyIllustration)
+        {
+            illustration.gameObject.SetActive(true);
+            illustration.sprite = currentQuestion.MyIllustration;
+        }
+        else
+        {
+            illustration.gameObject.SetActive(false);
+            illustration.sprite = null;
+        }
+
+        questionStarted = DateTime.Now;
 
         InstantiateContents();
     }
@@ -118,6 +146,14 @@ public class QCMContent : MonoBehaviour
     private void InstantiateContents()
     {
         ClearAnswersGO();
+        
+        // Void Section
+        answersParent.SetActive(true);
+
+        if (currentQuestion.MyQuestionType == QuestionType.Void)
+        {
+            answersParent.SetActive(false);
+        }
 
         foreach (Answer item in currentQuestion.MyAnswers)
         {
@@ -237,6 +273,10 @@ public class QCMContent : MonoBehaviour
                 isGoodAnswer = validateAnswer == currentAnswer;
                 break;
 
+            case QuestionType.Void:
+                isGoodAnswer = true;
+                break;
+
             default:
                 break;
         }
@@ -244,12 +284,28 @@ public class QCMContent : MonoBehaviour
         Debug.Log("Bonne réponse : " + isGoodAnswer);
         levelDatasPlayer.AddHasPassedQuestion(isGoodAnswer);
 
+        TimeSpan difference = DateTime.Now - questionStarted;
+        float seconds = Mathf.Round((float)difference.TotalSeconds);
+
+        levelDatasPlayer.AddTime(seconds);
+        Debug.Log("Time to finish this question : " + seconds);
+
         NextQuestion();
     }
 
     private bool IsLevelPassed()
     {
         return levelDatasPlayer.PourcentagePass >= ((float)levelInfos.PourcentageToPass / 100);
+    }
+
+    private float AverageTimeForThisLevel()
+    {
+        float _averageTime = 0f;
+        foreach (float _time in levelDatasPlayer.TimeForEachQuestions)
+        {
+            _averageTime += _time;
+        }
+        return _averageTime / levelDatasPlayer.TimeForEachQuestions.Count;
     }
 
     public void EndQCM()

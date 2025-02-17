@@ -25,7 +25,7 @@ namespace FlexLayout.Edit
             Canvas canvas;
             T component;
 
-            if(Selection.activeGameObject == null || GameObject.FindObjectOfType<Canvas>() == null)
+            if(Selection.activeGameObject == null || GameObject.FindAnyObjectByType<Canvas>() == null)
             {
                 canvas = EnsureCanvasFind();
                 parent = canvas.transform;
@@ -53,11 +53,11 @@ namespace FlexLayout.Edit
         {
             Canvas canvas;
 
-            canvas = GameObject.FindObjectOfType<Canvas>();
+            canvas = GameObject.FindAnyObjectByType<Canvas>();
             if (canvas != null)
                 return (canvas);
             EditorApplication.ExecuteMenuItem("GameObject/UI/Canvas");
-            canvas = GameObject.FindObjectOfType<Canvas>();
+            canvas = GameObject.FindAnyObjectByType<Canvas>();
             return (canvas);
         }
 

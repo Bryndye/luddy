@@ -123,7 +123,23 @@ PrefabInstance:
     - target: {fileID: 5635855922807239234, guid: d1ce4a55d648977458284649c659cff1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6231044458718751821, guid: 0cde816a300f33d40a90185190f45c15, type: 3}
+      objectReference: {fileID: -812686193157206793, guid: d1b1b8b76988f524fae62c23f8c4e7e4, type: 3}
+    - target: {fileID: 5635855922807239234, guid: d1ce4a55d648977458284649c659cff1, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635855922807239234, guid: d1ce4a55d648977458284649c659cff1, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635855922807239234, guid: d1ce4a55d648977458284649c659cff1, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635855922807239234, guid: d1ce4a55d648977458284649c659cff1, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5635855922807239234, guid: d1ce4a55d648977458284649c659cff1, type: 3}
       propertyPath: m_PreserveAspect
       value: 1
@@ -151,6 +167,14 @@ PrefabInstance:
     - target: {fileID: 6196161304808719004, guid: d1ce4a55d648977458284649c659cff1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600893567955303754, guid: d1ce4a55d648977458284649c659cff1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081997975687356616, guid: d1ce4a55d648977458284649c659cff1, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

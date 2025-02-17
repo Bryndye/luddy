@@ -20,7 +20,7 @@ public class ProfilsUI : MonoBehaviour
     [SerializeField] private GameObject formNewProfil;
     private Transform newProfilGO;
     [SerializeField] private TMP_InputField inputFieldNameProfil;
-    bool isLoading = false;
+    //bool isLoading = false;
 
 
     private void Awake()

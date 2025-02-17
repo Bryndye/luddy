@@ -28,6 +28,7 @@ public class SubAccount
             MyLevelDatasPlayer.Remove(MyLevelDatasPlayer.Find(x => x.LevelId == levelDatasPlayer.LevelId));
         }
         MyLevelDatasPlayer.Add(levelDatasPlayer);
+        Debug.Log("Ajout level datas");
     }
 }
 

@@ -17,7 +17,6 @@ public class CurrentProfilUI : MonoBehaviour
 
         // Forcer la desactivation de la page
         parameter.SetActive(false);
-        Debug.Log("Start");
     }
     
     public void SetContent()

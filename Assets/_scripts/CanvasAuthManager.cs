@@ -30,6 +30,8 @@ public class CanvasAuthManager : MonoBehaviour
 
         SignInButton.onClick.AddListener(SignInUI);
         SignUpButton.onClick.AddListener(SignUpUI);
+        SignInButton.onClick.AddListener(() => SaveIdentifiants(EmailInput.text, PasswordInput.text));
+        SignUpButton.onClick.AddListener(() => SaveIdentifiants(EmailInput.text, PasswordInput.text));
 
         // Password Type
         PasswordInput.contentType = TMP_InputField.ContentType.Password;
@@ -68,6 +70,8 @@ public class CanvasAuthManager : MonoBehaviour
 
         // TitleScreen arrive en premier
         gameObject.SetActive(false);
+
+        SetIdentifiants();
     }
 
     public void ActiveAuthentification(Action callback)
@@ -109,6 +113,24 @@ public class CanvasAuthManager : MonoBehaviour
         string password = PasswordInput.text;
 
         OnSignUpUI?.Invoke(email, password);
+    }
+
+    private void SaveIdentifiants(string email, string password)
+    {
+        if (string.IsNullOrEmpty(email)) { return; }
+
+        PlayerPrefs.SetString("email", email);
+        PlayerPrefs.SetString("password", password);
+    }
+
+    private void SetIdentifiants()
+    {
+        string _e = PlayerPrefs.GetString("email");
+        string _p = PlayerPrefs.GetString("password");
+        if (_e == null)
+            return;
+        EmailInput.text = PlayerPrefs.GetString("email");
+        PasswordInput.text = PlayerPrefs.GetString("password");
     }
 
 

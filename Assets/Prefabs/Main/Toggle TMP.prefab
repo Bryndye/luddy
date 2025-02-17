@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 5371412345509669250, guid: 60f39a333cbbef14eb34bbda43d917d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 4451158675296053090}
   - component: {fileID: 2558146580796735487}
   - component: {fileID: 5635855922807239234}
-  - component: {fileID: 7600893567955303754}
   - component: {fileID: 7995957894052147076}
   m_Layer: 5
   m_Name: Background
@@ -136,14 +135,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5004506582557748296, guid: 4ce63fb1ee0143b4bbbd52691f711f7b, type: 3}
+  m_Sprite: {fileID: 7499154508442906066, guid: 632959d864ad06c4798420630cd0c7c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -153,20 +152,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7600893567955303754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3089445033174187576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 8
-  image: {fileID: 5635855922807239234}
 --- !u!114 &7995957894052147076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +339,7 @@ MonoBehaviour:
       pixels: 0
     right:
       percentage: 0
-      pixels: 0
+      pixels: 16
     bottom:
       percentage: 0
       pixels: 0
@@ -374,14 +359,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 0.745283, g: 0.521794, b: 0.08085619, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -5483215198695101708, guid: 8212d702d98213141b967387b4fd10fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -541,8 +526,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Reponse A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30a4f3cc1c680bd4a99a19565e319cd8, type: 2}
+  m_sharedMaterial: {fileID: 8698864632385133479, guid: 30a4f3cc1c680bd4a99a19565e319cd8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

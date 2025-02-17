@@ -17,10 +17,16 @@ MonoBehaviour:
   Description: Careful!
   PourcentageToPass: 80
   ContentCreationList:
-  - MyQuestion: "Un mage a laiss\xE9 un message cod\xE9. Peux-tu m\u2019aider \xE0
+  - MyQuestionType: 3
+    MyQuestion: regarde bien cette image fdp ?
+    MyDescriptionHelp: Think faster!
+    MyIllustration: {fileID: 4722423025396694057, guid: db835b524b6c50c44999e661323d70fd, type: 3}
+    MyAnswers: []
+  - MyQuestionType: 1
+    MyQuestion: "Un mage a laiss\xE9 un message cod\xE9. Peux-tu m\u2019aider \xE0
       le lire ?"
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 1
+    MyIllustration: {fileID: 4722423025396694057, guid: db835b524b6c50c44999e661323d70fd, type: 3}
     MyAnswers:
     - MyValue: Il creuse
       MyAnswerType: 1
@@ -28,10 +34,11 @@ MonoBehaviour:
       MyAnswerType: 0
     - MyValue: Il mange
       MyAnswerType: 1
-  - MyQuestion: 'Lis cette liste de mots et dis lequel ne correspond pas : chat,
+  - MyQuestionType: 1
+    MyQuestion: 'Lis cette liste de mots et dis lequel ne correspond pas : chat,
       chien, maison, lapin.'
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 1
+    MyIllustration: {fileID: 496478297201195462, guid: 1b756a3cfab408e4cab22ab2244f9a5f, type: 3}
     MyAnswers:
     - MyValue: Chat
       MyAnswerType: 1
@@ -39,11 +46,12 @@ MonoBehaviour:
       MyAnswerType: 0
     - MyValue: Lapin
       MyAnswerType: 1
-  - MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
+  - MyQuestionType: 0
+    MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
       lumineuses en qu\xEAte d\u2019une myst\xE9rieuse algue bioluminescente.\"\nLesquels
       riment avec \"voiture\" ?"
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 0
+    MyIllustration: {fileID: 0}
     MyAnswers:
     - MyValue: Nature
       MyAnswerType: 0
@@ -51,11 +59,12 @@ MonoBehaviour:
       MyAnswerType: 0
     - MyValue: Amour
       MyAnswerType: 1
-  - MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
+  - MyQuestionType: 1
+    MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
       lumineuses en qu\xEAte d\u2019une myst\xE9rieuse algue bioluminescente.\"\nQuel
       mot commence par le m\xEAme son que \"soleil\" ?"
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 1
+    MyIllustration: {fileID: 0}
     MyAnswers:
     - MyValue: Sable
       MyAnswerType: 0
@@ -63,11 +72,12 @@ MonoBehaviour:
       MyAnswerType: 1
     - MyValue: Arbre
       MyAnswerType: 1
-  - MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
+  - MyQuestionType: 0
+    MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
       lumineuses en qu\xEAte d\u2019une myst\xE9rieuse algue bioluminescente.\"\nQuels
       mots riment avec \"g\xE9n\xE9rosit\xE9\" ?"
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 0
+    MyIllustration: {fileID: 0}
     MyAnswers:
     - MyValue: "Complexit\xE9"
       MyAnswerType: 0
@@ -75,9 +85,10 @@ MonoBehaviour:
       MyAnswerType: 0
     - MyValue: "Beaut\xE9"
       MyAnswerType: 0
-  - MyQuestion: "Pour trouver un tr\xE9sor, tu dois suivre un chemin myst\xE9rieux."
+  - MyQuestionType: 1
+    MyQuestion: "Pour trouver un tr\xE9sor, tu dois suivre un chemin myst\xE9rieux."
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 1
+    MyIllustration: {fileID: 0}
     MyAnswers:
     - MyValue: 6
       MyAnswerType: 1
@@ -85,10 +96,11 @@ MonoBehaviour:
       MyAnswerType: 1
     - MyValue: 4
       MyAnswerType: 0
-  - MyQuestion: "Si tu avances de 3 cases vers le haut, puis 2 vers la gauche, o\xF9
+  - MyQuestionType: 1
+    MyQuestion: "Si tu avances de 3 cases vers le haut, puis 2 vers la gauche, o\xF9
       arrives-tu si tu es en (4,4) ?"
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 1
+    MyIllustration: {fileID: 0}
     MyAnswers:
     - MyValue: (1,4)
       MyAnswerType: 1
@@ -96,10 +108,11 @@ MonoBehaviour:
       MyAnswerType: 1
     - MyValue: (4,1)
       MyAnswerType: 0
-  - MyQuestion: "Si tu avances de 3 cases vers le haut, puis 2 vers la gauche, o\xF9
+  - MyQuestionType: 1
+    MyQuestion: "Si tu avances de 3 cases vers le haut, puis 2 vers la gauche, o\xF9
       arrives-tu si tu es en (4,4) ?"
     MyDescriptionHelp: Think faster!
-    MyQuestionType: 1
+    MyIllustration: {fileID: 0}
     MyAnswers:
     - MyValue: 6
       MyAnswerType: 1
