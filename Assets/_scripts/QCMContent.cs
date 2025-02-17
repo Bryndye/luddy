@@ -41,6 +41,7 @@ public class QCMContent : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textEndReveal;
     [SerializeField] private TextMeshProUGUI textMonTemps;
     [SerializeField] private TextMeshProUGUI textTempsReach;
+    [SerializeField] private TextMeshProUGUI textDys;
     public List<List<string>> currentAnswers = new List<List<string>>();
 
     private void Start()
@@ -105,15 +106,15 @@ public class QCMContent : MonoBehaviour
         // Création des réponses pour le joueur
         for (int i = 0; i < contentAnswerReveal1.childCount; i++)
         {
-            Destroy(contentAnswerReveal1.GetChild(i));
+            Destroy(contentAnswerReveal1.GetChild(i).gameObject);
         }
         for (int i = 0; i < contentAnswerReveal2.childCount; i++)
         {
-            Destroy(contentAnswerReveal2.GetChild(i));
+            Destroy(contentAnswerReveal2.GetChild(i).gameObject);
         }
         for (int i = 0; i < contentAnswerReveal3.childCount; i++)
         {
-            Destroy(contentAnswerReveal3.GetChild(i));
+            Destroy(contentAnswerReveal3.GetChild(i).gameObject);
         }
 
         for (int i = 0; i < levelInfos.ContentCreationList.Count; i++)
@@ -148,6 +149,8 @@ public class QCMContent : MonoBehaviour
         textMonTemps.text = "Votre temps moyen : "+ AverageTimeForThisLevel() + "s\r\nTemps Total : "+ TotalTimeForThisLevel() + "s";
         textTempsReach.text = levelInfos.AverageTimeToFinish() + "s : Temps moyen à avoir ";
 
+        textDys.gameObject.SetActive(AverageTimeForThisLevel() > levelInfos.AverageTimeToFinish());
+        
         revealParent.SetActive(true);
     }
 

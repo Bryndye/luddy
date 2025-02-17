@@ -48,6 +48,7 @@ public class CanvasMainManager : MonoBehaviour
             // QCM BY DEFAULT
             qcmContent.ActiveQCM(()=> { 
                 CloseLevel();
+                FindAllLevelButtons();
             },
             levelInfos);
 
@@ -57,5 +58,25 @@ public class CanvasMainManager : MonoBehaviour
     public void CloseLevel()
     {
         levelsParent.SetActive(false);
+    }
+
+    void FindAllLevelButtons()
+    {
+        // Récupère tous les objets qui ont un LevelButton
+        LevelButton[] levelButtons = GameObject.FindObjectsByType<LevelButton>(FindObjectsSortMode.None);
+
+        // Convertit en liste de GameObjects
+        //List<GameObject> levelButtonObjects = new List<GameObject>();
+
+        foreach (LevelButton btn in levelButtons)
+        {
+            btn.RefreshMyState();
+        }
+
+        // Affiche les noms des objets trouvés
+        //foreach (GameObject go in levelButtonObjects)
+        //{
+        //    Debug.Log("LevelButton trouvé sur : " + go.name);
+        //}
     }
 }

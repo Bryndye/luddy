@@ -18,7 +18,7 @@ public class AnswerReveal : MonoBehaviour
         imageIsCorrect.color = isCorrect ? correct : error;
         myAnswer.text = "";
 
-        string additionnal = "\n,";
+        string additionnal = ",";
         foreach (var item in myAnswers)
         {
             myAnswer.text += item;

@@ -13,6 +13,7 @@ public class LevelButton : MonoBehaviour
     [SerializeField] private LevelState levelState;
     public LevelInfos Infos;
     [SerializeField] private TextMeshProUGUI m_TextMeshPro;
+    [SerializeField] private Image Mongol;
 
     private void Awake()
     {
@@ -58,12 +59,15 @@ public class LevelButton : MonoBehaviour
         {
             case LevelState.Lock:
                 myButton.interactable = false;
+                Mongol.gameObject.SetActive(false);
                 break;
             case LevelState.Unlock:
                 myButton.interactable = true;
+                Mongol.gameObject.SetActive(true);
                 break;
             case LevelState.Pass:
                 myButton.interactable= true;
+                Mongol.gameObject.SetActive(false);
                 break;
             default:
                 break;
