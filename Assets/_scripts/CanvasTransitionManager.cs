@@ -9,7 +9,6 @@ public class CanvasTransitionManager : MonoBehaviour
     public static CanvasTransitionManager Instance;
 
     [SerializeField] private Animator mAnimator;
-    AnimatorStateInfo stateInfo;
 
     [AnimatorParam("mAnimator"), SerializeField]
     private string enterParam;
@@ -28,7 +27,6 @@ public class CanvasTransitionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         mAnimator = GetComponent<Animator>();
-        stateInfo = mAnimator.GetCurrentAnimatorStateInfo(0); // 0 est l'index du premier layer
     }
 
     public void PlayTransition(Action callback)
@@ -59,16 +57,6 @@ public class CanvasTransitionManager : MonoBehaviour
         if (isTransitionning) {
             OnAnimationEnd?.Invoke();
             isTransitionning = false;
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayTransition(()=>{
-                Debug.Log("Fin anim");
-            });
         }
     }
 }

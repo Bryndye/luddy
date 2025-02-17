@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7503596967069179819
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33,10 +33,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6896295161070354405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 116.899994, y: -50}
-  m_SizeDelta: {x: 217.79999, y: 84}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &726804568717551484
 CanvasRenderer:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: true
+  m_text: true, false, true
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30a4f3cc1c680bd4a99a19565e319cd8, type: 2}
   m_sharedMaterial: {fileID: 8698864632385133479, guid: 30a4f3cc1c680bd4a99a19565e319cd8, type: 2}
@@ -154,7 +154,7 @@ MonoBehaviour:
   flexShrink: 1
   flexBasis:
     width:
-      percentage: 45
+      percentage: 90
       pixels: 0
     height:
       percentage: 100
@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7582304036074830732
 RectTransform:
   m_ObjectHideFlags: 0
@@ -230,10 +230,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6896295161070354405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 692, y: -50}
+  m_SizeDelta: {x: 464.82758, y: 84}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &4161782106619252480
 CanvasRenderer:
@@ -571,8 +571,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -597, y: -272}
-  m_SizeDelta: {x: 500, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1798467833462865662
 MonoBehaviour:
@@ -594,28 +594,28 @@ MonoBehaviour:
       percentage: 100
       pixels: 0
     height:
-      percentage: 0
-      pixels: 100
+      percentage: 20
+      pixels: 0
   flexMinimum:
     width:
       percentage: 0
       pixels: 0
     height:
       percentage: 0
-      pixels: 0
+      pixels: 80
   flexMaximum:
     width:
       percentage: 0
       pixels: 0
     height:
       percentage: 0
-      pixels: 0
+      pixels: 130
   flexMinimumEnabled:
     width: 0
-    height: 0
+    height: 1
   flexMaximumEnabled:
     width: 0
-    height: 0
+    height: 1
   alignSelfEnabled: 0
   alignSelf: 0
   margin:
@@ -692,8 +692,8 @@ MonoBehaviour:
   imageIsCorrect: {fileID: 6429873615016520504}
   myAnswer: {fileID: 1836655454303052052}
   theAnswer: {fileID: 7866449342262257789}
-  correct: {r: 1, g: 0.11792451, b: 0.11792451, a: 1}
-  error: {r: 0.39402956, g: 0.8207547, b: 0.22841759, a: 1}
+  correct: {r: 0.39215687, g: 0.81960785, b: 0.22745098, a: 1}
+  error: {r: 1, g: 0, b: 0, a: 1}
 --- !u!222 &9149746725166746723
 CanvasRenderer:
   m_ObjectHideFlags: 0

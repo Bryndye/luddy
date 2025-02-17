@@ -35,8 +35,13 @@ public class QCMContent : MonoBehaviour
     [Header("Final/ Reveal")]
     [SerializeField] private GameObject revealParent;
     [SerializeField] private AnswerReveal AnswerRevealPrefab;
-    [SerializeField] private Transform contentAnswerReveal;
+    [SerializeField] private Transform contentAnswerReveal1;
+    [SerializeField] private Transform contentAnswerReveal2;
+    [SerializeField] private Transform contentAnswerReveal3;
     [SerializeField] private TextMeshProUGUI textEndReveal;
+    [SerializeField] private TextMeshProUGUI textMonTemps;
+    [SerializeField] private TextMeshProUGUI textTempsReach;
+    public List<List<string>> currentAnswers = new List<List<string>>();
 
     private void Start()
     {
@@ -53,6 +58,7 @@ public class QCMContent : MonoBehaviour
         questionIndex = 0;
         // Permet d'effacer les anciennes datas
         levelDatasPlayer = new LevelDatasPlayer(levelInfos);
+        currentAnswers.Clear();
         NextQuestion();
     }
 
@@ -97,21 +103,41 @@ public class QCMContent : MonoBehaviour
             authManager.MyAccount.SetDatas();
 
         // Création des réponses pour le joueur
-        for (int i = 0; i < contentAnswerReveal.childCount; i++)
+        for (int i = 0; i < contentAnswerReveal1.childCount; i++)
         {
-            Destroy(contentAnswerReveal.GetChild(i));
+            Destroy(contentAnswerReveal1.GetChild(i));
+        }
+        for (int i = 0; i < contentAnswerReveal2.childCount; i++)
+        {
+            Destroy(contentAnswerReveal2.GetChild(i));
+        }
+        for (int i = 0; i < contentAnswerReveal3.childCount; i++)
+        {
+            Destroy(contentAnswerReveal3.GetChild(i));
         }
 
         for (int i = 0; i < levelInfos.ContentCreationList.Count; i++)
         {
             // Passer la réponse quand c'est une question Void
-            if (levelInfos.ContentCreationList[i].MyQuestionType == QuestionType.Void)
-                continue;
-
-            var _a = Instantiate(AnswerRevealPrefab, contentAnswerReveal);
-            _a.SetAnswer(levelDatasPlayer.HasPassedQuestions[i], 
-                null,
-                levelInfos.ContentCreationList[i].GetRightAnswersString());
+            if (levelInfos.ContentCreationList[i].MyQuestionType != QuestionType.Void)
+            {
+                int columnIndex = i % 3;
+                Transform _parent = null;
+                if (columnIndex == 0)
+                {
+                    _parent = contentAnswerReveal1;
+                }
+                else if (columnIndex == 1)
+                {
+                    _parent = contentAnswerReveal2;
+                }
+                else if (columnIndex == 2)
+                {
+                    _parent = contentAnswerReveal3;
+                }
+                AnswerReveal _a = Instantiate(AnswerRevealPrefab, _parent);
+                _a.SetAnswer(levelDatasPlayer.HasPassedQuestions[i], currentAnswers[i]);
+            }
         }
 
         textEndReveal.text = IsLevelPassed() ? "Bravo ! \n Tu as réussi le niveau !" : 
@@ -119,7 +145,8 @@ public class QCMContent : MonoBehaviour
 
         // Average time for this level
         // TEMPS AFFICHAGE TEXTE
-        textEndReveal.text += "\n Ton temps :" + AverageTimeForThisLevel() + "\n Le temps à faire : " + levelInfos.AverageTimeToFinish();
+        textMonTemps.text = "Votre temps moyen : "+ AverageTimeForThisLevel() + "s\r\nTemps Total : "+ TotalTimeForThisLevel() + "s";
+        textTempsReach.text = levelInfos.AverageTimeToFinish() + "s : Temps moyen à avoir ";
 
         revealParent.SetActive(true);
     }
@@ -230,6 +257,7 @@ public class QCMContent : MonoBehaviour
     public void ValidateAnswer()
     {
         bool isGoodAnswer = false;
+        List<string> currentAnswersThisQuestion = new List<string>();
 
         // Vérifier si la réponse est bonne
         switch (currentQuestion.MyQuestionType)
@@ -243,6 +271,7 @@ public class QCMContent : MonoBehaviour
                     {
                         countGoodAnswer++;
                     }
+                    currentAnswersThisQuestion.Add(anwser.MyValue);
                 }
                 for (int i = 0; i < toggles.Count; i++)
                 {
@@ -263,6 +292,10 @@ public class QCMContent : MonoBehaviour
                     if (toggles[i].isOn)
                     {
                         isGoodAnswer = currentQuestion.MyAnswers[i].MyAnswerType == AnswerType.Vrai;
+                        if (isGoodAnswer)
+                        {
+                            currentAnswersThisQuestion.Add(currentQuestion.MyAnswers[i].MyValue);
+                        }
                     }
                 }
                 break;
@@ -271,6 +304,7 @@ public class QCMContent : MonoBehaviour
                 string validateAnswer = inputFieldAnswer.text.ToLower();
                 string currentAnswer = currentQuestion.MyAnswers[0].MyValue.ToLower();
                 isGoodAnswer = validateAnswer == currentAnswer;
+                currentAnswersThisQuestion.Add(currentAnswer);
                 break;
 
             case QuestionType.Void:
@@ -286,9 +320,10 @@ public class QCMContent : MonoBehaviour
 
         TimeSpan difference = DateTime.Now - questionStarted;
         float seconds = Mathf.Round((float)difference.TotalSeconds);
-
         levelDatasPlayer.AddTime(seconds);
         Debug.Log("Time to finish this question : " + seconds);
+
+        currentAnswers.Add(currentAnswersThisQuestion);
 
         NextQuestion();
     }
@@ -306,6 +341,17 @@ public class QCMContent : MonoBehaviour
             _averageTime += _time;
         }
         return _averageTime / levelDatasPlayer.TimeForEachQuestions.Count;
+    }
+
+    private float TotalTimeForThisLevel()
+    {
+        float _timeTotal = 0;
+        foreach (float _time in levelDatasPlayer.TimeForEachQuestions)
+        {
+            _timeTotal += _time;
+        }
+
+        return _timeTotal;
     }
 
     public void EndQCM()

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,11 +12,21 @@ public class AnswerReveal : MonoBehaviour
     [SerializeField] private Color correct;
     [SerializeField] private Color error;
 
-    public void SetAnswer(bool isCorrect, string myAnswer, string theAnswer)
+    public void SetAnswer(bool isCorrect, List<string> myAnswers)
     {
         imageIsCorrect = GetComponent<Image>();
         imageIsCorrect.color = isCorrect ? correct : error;
-        this.myAnswer.text = myAnswer;
-        this.theAnswer.text = theAnswer;
+        myAnswer.text = "";
+
+        string additionnal = "\n,";
+        foreach (var item in myAnswers)
+        {
+            myAnswer.text += item;
+            if (myAnswers.Count > 1 && myAnswers.Last() != item)
+            {
+                myAnswer.text += additionnal;
+            }
+        }
+        //this.theAnswer.text = theAnswer;
     }
 }
