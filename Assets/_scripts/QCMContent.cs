@@ -117,12 +117,13 @@ public class QCMContent : MonoBehaviour
             Destroy(contentAnswerReveal3.GetChild(i).gameObject);
         }
 
+        int _indexTempColumn = 0;
         for (int i = 0; i < levelInfos.ContentCreationList.Count; i++)
         {
             // Passer la réponse quand c'est une question Void
             if (levelInfos.ContentCreationList[i].MyQuestionType != QuestionType.Void)
             {
-                int columnIndex = i % 3;
+                int columnIndex = _indexTempColumn % 3;
                 Transform _parent = null;
                 if (columnIndex == 0)
                 {
@@ -138,6 +139,7 @@ public class QCMContent : MonoBehaviour
                 }
                 AnswerReveal _a = Instantiate(AnswerRevealPrefab, _parent);
                 _a.SetAnswer(levelDatasPlayer.HasPassedQuestions[i], currentAnswers[i]);
+                _indexTempColumn++;
             }
         }
 
@@ -295,10 +297,7 @@ public class QCMContent : MonoBehaviour
                     if (toggles[i].isOn)
                     {
                         isGoodAnswer = currentQuestion.MyAnswers[i].MyAnswerType == AnswerType.Vrai;
-                        if (isGoodAnswer)
-                        {
-                            currentAnswersThisQuestion.Add(currentQuestion.MyAnswers[i].MyValue);
-                        }
+                        currentAnswersThisQuestion.Add(currentQuestion.MyAnswers[i].MyValue);
                     }
                 }
                 break;
@@ -318,13 +317,13 @@ public class QCMContent : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Bonne réponse : " + isGoodAnswer);
+        //Debug.Log("Bonne réponse : " + isGoodAnswer);
         levelDatasPlayer.AddHasPassedQuestion(isGoodAnswer);
 
         TimeSpan difference = DateTime.Now - questionStarted;
         float seconds = Mathf.Round((float)difference.TotalSeconds);
         levelDatasPlayer.AddTime(seconds);
-        Debug.Log("Time to finish this question : " + seconds);
+        //Debug.Log("Time to finish this question : " + seconds);
 
         currentAnswers.Add(currentAnswersThisQuestion);
 

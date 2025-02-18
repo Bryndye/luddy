@@ -14,19 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelId: 1
   MyLevelType: 0
-  Description: Careful!
+  Description: "Testez vos connaissances de base avec ce QCM d'introduction et d\xE9couvrez
+    les concepts essentiels !"
   PourcentageToPass: 80
   ContentCreationList:
-  - MyQuestionType: 3
-    MyQuestion: regarde bien cette image fdp ?
-    MyDescriptionHelp: Think faster!
-    MyIllustration: {fileID: 4722423025396694057, guid: db835b524b6c50c44999e661323d70fd, type: 3}
-    MyAnswers: []
   - MyQuestionType: 1
-    MyQuestion: "Un mage a laiss\xE9 un message cod\xE9. Peux-tu m\u2019aider \xE0
-      le lire ?"
+    MyQuestion: 'Lis cette phrase : Le renard saute par-dessus le mur gris.
+
+      Que
+      fait le renard ?'
     MyDescriptionHelp: Think faster!
-    MyIllustration: {fileID: 4722423025396694057, guid: db835b524b6c50c44999e661323d70fd, type: 3}
+    MyIllustration: {fileID: 0}
     MyAnswers:
     - MyValue: Il creuse
       MyAnswerType: 1
@@ -34,22 +32,24 @@ MonoBehaviour:
       MyAnswerType: 0
     - MyValue: Il mange
       MyAnswerType: 1
+    AverageTimeToFinish: 8
   - MyQuestionType: 1
     MyQuestion: 'Lis cette liste de mots et dis lequel ne correspond pas : chat,
       chien, maison, lapin.'
     MyDescriptionHelp: Think faster!
-    MyIllustration: {fileID: 496478297201195462, guid: 1b756a3cfab408e4cab22ab2244f9a5f, type: 3}
+    MyIllustration: {fileID: 0}
     MyAnswers:
     - MyValue: Chat
       MyAnswerType: 1
     - MyValue: Maison
       MyAnswerType: 0
+    - MyValue: chien
+      MyAnswerType: 1
     - MyValue: Lapin
       MyAnswerType: 1
+    AverageTimeToFinish: 8
   - MyQuestionType: 0
-    MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
-      lumineuses en qu\xEAte d\u2019une myst\xE9rieuse algue bioluminescente.\"\nLesquels
-      riment avec \"voiture\" ?"
+    MyQuestion: Lesquels riment avec "voiture" ?
     MyDescriptionHelp: Think faster!
     MyIllustration: {fileID: 0}
     MyAnswers:
@@ -59,10 +59,9 @@ MonoBehaviour:
       MyAnswerType: 0
     - MyValue: Amour
       MyAnswerType: 1
+    AverageTimeToFinish: 8
   - MyQuestionType: 1
-    MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
-      lumineuses en qu\xEAte d\u2019une myst\xE9rieuse algue bioluminescente.\"\nQuel
-      mot commence par le m\xEAme son que \"soleil\" ?"
+    MyQuestion: "Quel mot commence par le m\xEAme son que \"soleil\" ?"
     MyDescriptionHelp: Think faster!
     MyIllustration: {fileID: 0}
     MyAnswers:
@@ -72,30 +71,39 @@ MonoBehaviour:
       MyAnswerType: 1
     - MyValue: Arbre
       MyAnswerType: 1
-  - MyQuestionType: 0
-    MyQuestion: "Lis cette phrase : \"L\u2019hippocampe aquatique explorait les abysses
-      lumineuses en qu\xEAte d\u2019une myst\xE9rieuse algue bioluminescente.\"\nQuels
-      mots riment avec \"g\xE9n\xE9rosit\xE9\" ?"
+    AverageTimeToFinish: 8
+  - MyQuestionType: 3
+    MyQuestion: "Analyse bien cette image.\nPasse \xE0 la suite une fois que c'est
+      bon."
     MyDescriptionHelp: Think faster!
-    MyIllustration: {fileID: 0}
-    MyAnswers:
-    - MyValue: "Complexit\xE9"
-      MyAnswerType: 0
-    - MyValue: "L\xE9galit\xE9"
-      MyAnswerType: 0
-    - MyValue: "Beaut\xE9"
-      MyAnswerType: 0
+    MyIllustration: {fileID: 4722423025396694057, guid: db835b524b6c50c44999e661323d70fd, type: 3}
+    MyAnswers: []
+    AverageTimeToFinish: 30
   - MyQuestionType: 1
-    MyQuestion: "Pour trouver un tr\xE9sor, tu dois suivre un chemin myst\xE9rieux."
+    MyQuestion: Combien de pommes rouges y avait-il sur l'image ?
     MyDescriptionHelp: Think faster!
     MyIllustration: {fileID: 0}
     MyAnswers:
-    - MyValue: 6
+    - MyValue: 3
+      MyAnswerType: 0
+    - MyValue: 4
       MyAnswerType: 1
     - MyValue: 5
       MyAnswerType: 1
-    - MyValue: 4
+    AverageTimeToFinish: 10
+  - MyQuestionType: 1
+    MyQuestion: "Si tu pars de la case 1 et avances de 3 cases, o\xF9 arrives-tu
+      ?"
+    MyDescriptionHelp: Think faster!
+    MyIllustration: {fileID: 0}
+    MyAnswers:
+    - MyValue: Case 2
+      MyAnswerType: 1
+    - MyValue: Case 3
+      MyAnswerType: 1
+    - MyValue: Case 4
       MyAnswerType: 0
+    AverageTimeToFinish: 15
   - MyQuestionType: 1
     MyQuestion: "Si tu avances de 3 cases vers le haut, puis 2 vers la gauche, o\xF9
       arrives-tu si tu es en (4,4) ?"
@@ -104,19 +112,65 @@ MonoBehaviour:
     MyAnswers:
     - MyValue: (1,4)
       MyAnswerType: 1
-    - MyValue: (2,7)
-      MyAnswerType: 1
-    - MyValue: (4,1)
+    - MyValue: (7,2)
       MyAnswerType: 0
+    - MyValue: (4,1)
+      MyAnswerType: 1
+    AverageTimeToFinish: 15
   - MyQuestionType: 1
-    MyQuestion: "Si tu avances de 3 cases vers le haut, puis 2 vers la gauche, o\xF9
-      arrives-tu si tu es en (4,4) ?"
+    MyQuestion: "Si tu as 5 pi\xE8ces d\u2019or et que tu en donnes 2 \xE0 un ami,
+      combien te reste-t-il ?"
     MyDescriptionHelp: Think faster!
     MyIllustration: {fileID: 0}
     MyAnswers:
-    - MyValue: 6
+    - MyValue: "2 pi\xE8ces d'argent"
       MyAnswerType: 1
-    - MyValue: 5
-      MyAnswerType: 1
-    - MyValue: 4
+    - MyValue: "3 pi\xE8ces d'or"
       MyAnswerType: 0
+    - MyValue: "2 pi\xE8ces d'or"
+      MyAnswerType: 1
+    - MyValue: "4 pi\xE8ces d'or"
+      MyAnswerType: 1
+    AverageTimeToFinish: 15
+  - MyQuestionType: 2
+    MyQuestion: 'Recopie ce mot : Royaume'
+    MyDescriptionHelp: Think faster!
+    MyIllustration: {fileID: 0}
+    MyAnswers:
+    - MyValue: Royaume
+      MyAnswerType: 0
+    AverageTimeToFinish: 10
+  - MyQuestionType: 2
+    MyQuestion: "Recopie cette phrase : \nLe chevalier s'\xE9lan\xE7a courageusement
+      sur le chemin sinueux du ch\xE2teau enchant\xE9."
+    MyDescriptionHelp: Think faster!
+    MyIllustration: {fileID: 0}
+    MyAnswers:
+    - MyValue: "Le chevalier s'\xE9lan\xE7a courageusement sur le chemin sinueux
+        du ch\xE2teau enchant\xE9."
+      MyAnswerType: 0
+    AverageTimeToFinish: 15
+  - MyQuestionType: 0
+    MyQuestion: "Dans cette liste, coche tous les animaux : Chat, Pomme, Chien, \xC9toile,
+      Lapin."
+    MyDescriptionHelp: Think faster!
+    MyIllustration: {fileID: 0}
+    MyAnswers:
+    - MyValue: Chat
+      MyAnswerType: 0
+    - MyValue: Pomme
+      MyAnswerType: 1
+    - MyValue: "\xC9toile"
+      MyAnswerType: 1
+    - MyValue: Lapin
+      MyAnswerType: 0
+    AverageTimeToFinish: 15
+  - MyQuestionType: 2
+    MyQuestion: "Comment s\u2019appelle cet objet ?\nN'oublie pas la majuscule au
+      d\xE9but."
+    MyDescriptionHelp: Think faster!
+    MyIllustration: {fileID: 496478297201195462, guid: 1b756a3cfab408e4cab22ab2244f9a5f, type: 3}
+    MyAnswers:
+    - MyValue: "\xC9p\xE9e"
+      MyAnswerType: 0
+    AverageTimeToFinish: 15

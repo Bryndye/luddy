@@ -28,7 +28,7 @@ public class LevelInfos : ScriptableObject
             _averageTime += _contentCreation.AverageTimeToFinish;
         }
 
-        return _averageTime / ContentCreationList.Count;
+        return Mathf.Round(_averageTime / ContentCreationList.Count);
     }
 }
 

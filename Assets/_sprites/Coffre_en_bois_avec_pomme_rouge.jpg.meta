@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Coffre_en_bois_avec_pomme_rouge_0: 4722423025396694057
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
