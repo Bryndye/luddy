@@ -214,13 +214,13 @@ public class Account
             timeToSubscribed = DateTime.Now;
             timeEndSubscribed = timeToSubscribed;
             timeEndSubscribed.AddYears(1);
-            MaxSubAccounts = 3;
+            MaxSubAccounts = 4;
         }
         else
         {
             timeToSubscribed = DateTime.MinValue;
             timeEndSubscribed = timeToSubscribed;
-            MaxSubAccounts = 2;
+            MaxSubAccounts = 1;
         }
         SetDatas();
     }

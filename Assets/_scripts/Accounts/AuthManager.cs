@@ -83,10 +83,16 @@ public class AuthManager : MonoBehaviour
             Debug.Log("AuthManager/ ERR : wrong format email : " + email);
             return;
         }
-        await SignUpWithUsernamePasswordAsync(email, password);
+        try
+        {
+            await SignUpWithUsernamePasswordAsync(email, password);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("AuthManager/ ERR : signup failed - " + ex.Message);
+            return;
+        }
 
-        UpdateCurrentAccount();
-        OnSignIn?.Invoke(MyAccount);
     }
     async Task SignUpWithUsernamePasswordAsync(string email, string password)
     {
@@ -96,16 +102,20 @@ public class AuthManager : MonoBehaviour
             Debug.Log(password);
             await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(email, password);
             Debug.Log("AuthManager : SignUp is successful.");
+            UpdateCurrentAccount();
+            OnSignIn?.Invoke(MyAccount);
         }
         catch (AuthenticationException ex)
         {
             // Compare error code to AuthenticationErrorCodes
             Debug.LogException(ex);
+            _canvasAuthManager.incorrectId.SetActive(true);
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
             Debug.LogException(ex);
+            _canvasAuthManager.incorrectId.SetActive(true);
         }
     }
 

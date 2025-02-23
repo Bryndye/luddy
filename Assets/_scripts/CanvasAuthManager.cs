@@ -19,6 +19,7 @@ public class CanvasAuthManager : MonoBehaviour
     [Header("Profils Screen")]
     public ProfilsUI MyProfilsUI;
     public Wizard Wizard;
+    public GameObject incorrectId;
 
     public Action<string, string> OnSignInUI;
     public Action<string, string> OnSignUpUI;
@@ -36,6 +37,8 @@ public class CanvasAuthManager : MonoBehaviour
         // Password Type
         PasswordInput.contentType = TMP_InputField.ContentType.Password;
         PasswordInput.asteriskChar = '*';
+
+        incorrectId.SetActive(false);
     }
 
     private void Start()
@@ -61,6 +64,7 @@ public class CanvasAuthManager : MonoBehaviour
         AuthenticationService.Instance.SignInFailed += (err) =>
         {
             AuthUI?.SetActive(true);
+            incorrectId.SetActive(true);
         };
 
         AuthenticationService.Instance.SignedOut += () =>
