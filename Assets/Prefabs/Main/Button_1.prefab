@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5161786341313107391}
   - component: {fileID: 8381019075210146998}
   - component: {fileID: 1482244129183269294}
+  - component: {fileID: 847068708462832640}
   m_Layer: 5
   m_Name: Mongol
   m_TagString: Untagged
@@ -75,6 +76,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &847068708462832640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2986921017451446334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4544873714852029078
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +104,7 @@ GameObject:
   - component: {fileID: 4536517455978263263}
   - component: {fileID: 8478151809971050634}
   - component: {fileID: 3920687155128354204}
+  - component: {fileID: 4080821176757491054}
   m_Layer: 5
   m_Name: Button_1
   m_TagString: Untagged
@@ -226,6 +243,21 @@ MonoBehaviour:
   Infos: {fileID: 11400000, guid: 787484effe6488d4d8737f3d8a36097a, type: 2}
   m_TextMeshPro: {fileID: 7549725022847348527}
   Mongol: {fileID: 1482244129183269294}
+--- !u!114 &4080821176757491054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544873714852029078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_EffectDistance: {x: 10, y: -10}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8129542078557654077
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,8 +325,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1 - 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 30a4f3cc1c680bd4a99a19565e319cd8, type: 2}
-  m_sharedMaterial: {fileID: 8698864632385133479, guid: 30a4f3cc1c680bd4a99a19565e319cd8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fef694ab8bdecee45a13dd15bf27e33b, type: 2}
+  m_sharedMaterial: {fileID: 8698864632385133479, guid: fef694ab8bdecee45a13dd15bf27e33b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

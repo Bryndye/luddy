@@ -14,18 +14,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelId: 2
   MyLevelType: 0
-  Description: "On va voir si \xE7a va ?"
+  Description: Exemple d'introduction
   PourcentageToPass: 80
   ContentCreationList:
-  - MyQuestion: Ca va ?
+  - MyQuestionType: 1
+    MyQuestion: Exemple de question unique
     MyDescriptionHelp: 
-    MyQuestionType: 1
+    MyIllustration: {fileID: 0}
     MyAnswers:
-    - MyValue: Non
+    - MyValue: Vrai
       MyAnswerType: 0
-    - MyValue: Pas sur
+    - MyValue: Faux
+      MyAnswerType: 1
+    - MyValue: Faux
+      MyAnswerType: 1
+    - MyValue: Faux
+      MyAnswerType: 1
+    AverageTimeToFinish: 15
+  - MyQuestionType: 0
+    MyQuestion: Exemple de question multiple
+    MyDescriptionHelp: 
+    MyIllustration: {fileID: 0}
+    MyAnswers:
+    - MyValue: Vrai
       MyAnswerType: 0
-    - MyValue: Jsp
+    - MyValue: Faux
+      MyAnswerType: 1
+    - MyValue: Faux
+      MyAnswerType: 1
+    - MyValue: Vrai
       MyAnswerType: 0
-    - MyValue: Je taime
+    AverageTimeToFinish: 10
+  - MyQuestionType: 2
+    MyQuestion: "Exemple de question avec champ \xE0 remplir : \"vide\""
+    MyDescriptionHelp: 
+    MyIllustration: {fileID: 0}
+    MyAnswers:
+    - MyValue: vide
       MyAnswerType: 0
+    AverageTimeToFinish: 10
+  - MyQuestionType: 3
+    MyQuestion: "Exemple de \"question\" vide pour pr\xE9parer le joueur \xE0 la
+      auestion suivante.\nQuel est ce logo ?"
+    MyDescriptionHelp: 
+    MyIllustration: {fileID: 21300000, guid: dc456e4f51b5047498b7ecf021f4e45f, type: 3}
+    MyAnswers: []
+    AverageTimeToFinish: 10
+  - MyQuestionType: 1
+    MyQuestion: Exemple de question qui suit la "question" vide
+    MyDescriptionHelp: 
+    MyIllustration: {fileID: 21300000, guid: dc456e4f51b5047498b7ecf021f4e45f, type: 3}
+    MyAnswers:
+    - MyValue: Luddy
+      MyAnswerType: 0
+    - MyValue: Autre
+      MyAnswerType: 1
+    AverageTimeToFinish: 8
