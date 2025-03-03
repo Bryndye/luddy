@@ -51,6 +51,12 @@ public class LevelButton : MonoBehaviour
         }
         else
         {
+            if (levels.Count >= 0 && Infos.LevelId == levels.Count +1)
+            {
+                ChangeLevelState(LevelState.Unlock);
+                return;
+            }
+
             // Trouver le dernier niveau terminé
             var lastFinishedLevel = levels
                 .Where(l => l.IsFinished)

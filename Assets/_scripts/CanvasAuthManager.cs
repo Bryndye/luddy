@@ -63,8 +63,9 @@ public class CanvasAuthManager : MonoBehaviour
 
         AuthenticationService.Instance.SignInFailed += (err) =>
         {
-            AuthUI?.SetActive(true);
+            //AuthUI?.SetActive(true);
             incorrectId.SetActive(true);
+            MyProfilsUI.gameObject.SetActive(false);
         };
 
         AuthenticationService.Instance.SignedOut += () =>
@@ -142,10 +143,6 @@ public class CanvasAuthManager : MonoBehaviour
     public void SetActiveProfilsUIFalse()
     {
         MyProfilsUI.gameObject.SetActive(false);
-    }
-    public void SetActiveProfilsUI(bool active)
-    {
-        MyProfilsUI.gameObject.SetActive(active);
     }
 
     public void ActiveProfil(int id)

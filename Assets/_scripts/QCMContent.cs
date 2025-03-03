@@ -79,6 +79,8 @@ public class QCMContent : MonoBehaviour
         SetDatasInContent();
 
         questionIndex++;
+
+        isEmptyText.SetActive(false);
     }
 
     private void ActiveAnswerReveal()
