@@ -24,6 +24,7 @@ public class QCMContent : MonoBehaviour
 
     [Header("Current QCM")]
     [SerializeField] private LevelInfos levelInfos;
+    [SerializeField]
     private ContentCreation currentQuestion;
     [SerializeField] private int questionIndex = 0;
     public List<GameObject> answers = new List<GameObject>();
@@ -31,6 +32,7 @@ public class QCMContent : MonoBehaviour
     [Tooltip("Laisser vide, champ automatique")] private TMP_InputField inputFieldAnswer;
     [SerializeField] private LevelDatasPlayer levelDatasPlayer;
     private DateTime questionStarted;
+    [SerializeField] private GameObject isEmptyText;
 
     [Header("Final/ Reveal")]
     [SerializeField] private GameObject revealParent;
@@ -47,6 +49,8 @@ public class QCMContent : MonoBehaviour
     private void Start()
     {
         authManager = AuthManager.Instance;
+
+        isEmptyText.SetActive(false);
     }
 
     public void ActiveQCM(Action action, LevelInfos levelInfos)
@@ -264,6 +268,8 @@ public class QCMContent : MonoBehaviour
         bool isGoodAnswer = false;
         List<string> currentAnswersThisQuestion = new List<string>();
 
+        bool isEmpty = true;
+
         // Vérifier si la réponse est bonne
         switch (currentQuestion.MyQuestionType)
         {
@@ -285,6 +291,8 @@ public class QCMContent : MonoBehaviour
                         isGoodAnswer = currentQuestion.MyAnswers[i].MyAnswerType == AnswerType.Vrai;
                         if (isGoodAnswer)
                             count++;
+
+                        isEmpty = false;
                     }
                 }
                 if (isGoodAnswer)
@@ -298,6 +306,8 @@ public class QCMContent : MonoBehaviour
                     {
                         isGoodAnswer = currentQuestion.MyAnswers[i].MyAnswerType == AnswerType.Vrai;
                         currentAnswersThisQuestion.Add(currentQuestion.MyAnswers[i].MyValue);
+
+                        isEmpty = false;
                     }
                 }
                 break;
@@ -307,14 +317,23 @@ public class QCMContent : MonoBehaviour
                 string currentAnswer = currentQuestion.MyAnswers[0].MyValue.ToLower();
                 isGoodAnswer = validateAnswer == currentAnswer;
                 currentAnswersThisQuestion.Add(currentAnswer);
+
+                isEmpty = string.IsNullOrEmpty(validateAnswer);
                 break;
 
             case QuestionType.Void:
                 isGoodAnswer = true;
+                isEmpty = false;
                 break;
 
             default:
                 break;
+        }
+
+        if (isEmpty)
+        {
+            isEmptyText.SetActive(true);
+            return;
         }
 
         //Debug.Log("Bonne réponse : " + isGoodAnswer);

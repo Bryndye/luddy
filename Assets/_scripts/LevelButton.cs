@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum LevelState { Lock, Unlock, Pass}
+public enum LevelState { Lock, Unlock,UnlockFirst, Pass}
 public class LevelButton : MonoBehaviour
 {
     private AuthManager authManager;
@@ -31,26 +31,44 @@ public class LevelButton : MonoBehaviour
 
     public void RefreshMyState()
     {
-        // Si on retrouve le level dans les datas, il est débloque => Unlock
-        var hasExistLevels = authManager.MyCurrentSubAccount.MyLevelDatasPlayer.Where(i => i.LevelId == Infos.LevelId).FirstOrDefault();
-        if (hasExistLevels != null)
+        var levels = authManager.MyCurrentSubAccount.MyLevelDatasPlayer;
+
+        // Vérifier si le niveau actuel existe
+        LevelDatasPlayer currentLevelData = levels.FirstOrDefault(l => l.LevelId == Infos.LevelId);
+
+        if (currentLevelData != null)
         {
-            // Si IsFinished = true, alors => Pass
-            if (hasExistLevels.IsFinished)
+            // Si le niveau est terminé => Pass
+            if (currentLevelData.IsFinished)
+            {
                 ChangeLevelState(LevelState.Pass);
-            else 
+            }
+            // Si le niveau a été commencé mais pas terminé => Unlock
+            else
+            {
                 ChangeLevelState(LevelState.Unlock);
+            }
         }
-        // Si on ne le retrouve pas, il n'a jamais ete joue => Lock
         else
         {
-            // Si le dernier level est son -1, alors il est le suivant => Unlock
-            if (authManager.MyCurrentSubAccount.MyLevelDatasPlayer.Count + 1 == Infos.LevelId)
+            // Trouver le dernier niveau terminé
+            var lastFinishedLevel = levels
+                .Where(l => l.IsFinished)
+                .OrderByDescending(l => l.LevelId)
+                .FirstOrDefault();
+
+            // Si le dernier niveau terminé est juste avant le niveau actuel => Unlock sinon Lock
+            if (lastFinishedLevel != null && lastFinishedLevel.LevelId + 1 == Infos.LevelId)
+            {
                 ChangeLevelState(LevelState.Unlock);
+            }
             else
+            {
                 ChangeLevelState(LevelState.Lock);
+            }
         }
     }
+
 
     private void ChangeLevelState(LevelState levelState)
     {
@@ -64,6 +82,10 @@ public class LevelButton : MonoBehaviour
             case LevelState.Unlock:
                 myButton.interactable = true;
                 Mongol.gameObject.SetActive(true);
+                break;
+            case LevelState.UnlockFirst:
+                myButton.interactable = true;
+                Mongol.gameObject.SetActive(false);
                 break;
             case LevelState.Pass:
                 myButton.interactable= true;

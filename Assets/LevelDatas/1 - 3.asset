@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fb08f545ae6e249a5c7b10626ca2a4, type: 3}
   m_Name: 1 - 3
   m_EditorClassIdentifier: 
-  LevelId: 2
+  LevelId: 3
   MyLevelType: 0
   Description: Exemple d'introduction
   PourcentageToPass: 80
