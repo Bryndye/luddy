@@ -19,7 +19,9 @@ public class CanvasAuthManager : MonoBehaviour
     [Header("Profils Screen")]
     public ProfilsUI MyProfilsUI;
     public Wizard Wizard;
-    public GameObject incorrectId;
+    public TextMeshProUGUI incorrectId;
+    [SerializeField] private string incorrectSignInText = "identifiants incorrects !";
+    [SerializeField] private string incorrectSignUpText = "identifiants incorrects !";
 
     public Action<string, string> OnSignInUI;
     public Action<string, string> OnSignUpUI;
@@ -38,7 +40,7 @@ public class CanvasAuthManager : MonoBehaviour
         PasswordInput.contentType = TMP_InputField.ContentType.Password;
         PasswordInput.asteriskChar = '*';
 
-        incorrectId.SetActive(false);
+        incorrectId.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -64,13 +66,13 @@ public class CanvasAuthManager : MonoBehaviour
         AuthenticationService.Instance.SignInFailed += (err) =>
         {
             //AuthUI?.SetActive(true);
-            incorrectId.SetActive(true);
             MyProfilsUI.gameObject.SetActive(false);
         };
 
         AuthenticationService.Instance.SignedOut += () =>
         {
             AuthUI?.SetActive(true);
+            incorrectId.gameObject.SetActive(false);
         };
 
         // TitleScreen arrive en premier
@@ -152,4 +154,10 @@ public class CanvasAuthManager : MonoBehaviour
         gameObject.SetActive(false);
     }
     #endregion
+
+    public void IncorrectText(string incorrectText)
+    {
+        incorrectId.gameObject.SetActive(true);
+        incorrectId.text = incorrectText;
+    }
 }

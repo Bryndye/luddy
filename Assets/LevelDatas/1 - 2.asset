@@ -15,7 +15,7 @@ MonoBehaviour:
   LevelId: 2
   MyLevelType: 0
   Description: Exemple d'introduction
-  PourcentageToPass: 80
+  PourcentageToPass: 65
   ContentCreationList:
   - MyQuestionType: 1
     MyQuestion: Exemple de question unique

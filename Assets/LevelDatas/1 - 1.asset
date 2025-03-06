@@ -16,7 +16,7 @@ MonoBehaviour:
   MyLevelType: 0
   Description: "Testez vos connaissances de base avec ce QCM d'introduction et d\xE9couvrez
     les concepts essentiels !"
-  PourcentageToPass: 80
+  PourcentageToPass: 65
   ContentCreationList:
   - MyQuestionType: 1
     MyQuestion: 'Lis cette phrase : Le renard saute par-dessus le mur gris.
@@ -43,7 +43,7 @@ MonoBehaviour:
       MyAnswerType: 1
     - MyValue: Maison
       MyAnswerType: 0
-    - MyValue: chien
+    - MyValue: Chien
       MyAnswerType: 1
     - MyValue: Lapin
       MyAnswerType: 1
@@ -112,7 +112,7 @@ MonoBehaviour:
     MyAnswers:
     - MyValue: (1,4)
       MyAnswerType: 1
-    - MyValue: (7,2)
+    - MyValue: (2,7)
       MyAnswerType: 0
     - MyValue: (4,1)
       MyAnswerType: 1

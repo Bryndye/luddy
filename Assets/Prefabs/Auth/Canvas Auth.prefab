@@ -3147,7 +3147,9 @@ MonoBehaviour:
   SignUpButton: {fileID: 2184448998183586512}
   MyProfilsUI: {fileID: 6711554770612161640}
   Wizard: {fileID: 2532320651929499727}
-  incorrectId: {fileID: 6360149907234911773}
+  incorrectId: {fileID: 5261826442595272953}
+  incorrectSignInText: identifiants incorrects !
+  incorrectSignUpText: identifiants incorrects !
 --- !u!1 &8277399961600836200
 GameObject:
   m_ObjectHideFlags: 0

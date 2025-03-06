@@ -76,23 +76,16 @@ public class AuthManager : MonoBehaviour
         if (!Validators.ValidateInputs(email, password))
         {
             Debug.Log("AuthManager/ ERR : missing username or password : " + email + " " + password);
+            _canvasAuthManager.IncorrectText("Le mail ou le mot de passe est incorrect");
             return;
         }
         if (!Validators.IsValidEmail(email))
         {
             Debug.Log("AuthManager/ ERR : wrong format email : " + email);
+            _canvasAuthManager.IncorrectText("Le format du mail est incorrect");
             return;
         }
-        try
-        {
-            await SignUpWithUsernamePasswordAsync(email, password);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("AuthManager/ ERR : signup failed - " + ex.Message);
-            return;
-        }
-
+        await SignUpWithUsernamePasswordAsync(email, password);
     }
     async Task SignUpWithUsernamePasswordAsync(string email, string password)
     {
@@ -108,14 +101,22 @@ public class AuthManager : MonoBehaviour
         catch (AuthenticationException ex)
         {
             // Compare error code to AuthenticationErrorCodes
-            Debug.LogException(ex);
-            _canvasAuthManager.incorrectId.SetActive(true);
+            //Debug.LogException(ex);
+            if (ex.Message.Contains("username"))
+            {
+                _canvasAuthManager.IncorrectText("Le compte existe déjà, vous ne pouvez pas recréer un compte avec ce même identifiant");
+            }
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
-            Debug.LogException(ex);
-            _canvasAuthManager.incorrectId.SetActive(true);
+            //Debug.LogException(ex);
+
+            if (ex.Message.Contains("Password"))
+            {
+                Debug.Log(ex.Message);
+                _canvasAuthManager.IncorrectText("Le mot de passe ne respecte pas les conditions, il faut au moins une majuscule, une minuscule, un chiffre et un symbole.");
+            }
         }
     }
 
@@ -124,11 +125,13 @@ public class AuthManager : MonoBehaviour
         if (!Validators.ValidateInputs(email, password))
         {
             Debug.Log("AuthManager/ ERR : missing username or password " + email + " " + password);
+            _canvasAuthManager.IncorrectText("Le mail ou le mot de passe est incorrect");
             return;
         }
         if (!Validators.IsValidEmail(email))
         {
             Debug.Log("AuthManager/ ERR : wrong format email : " + email);
+            _canvasAuthManager.IncorrectText("Le format du mail est incorrect");
             return;
         }
         await SignInWithUsernamePasswordAsync(email, password);
