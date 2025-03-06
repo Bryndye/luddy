@@ -39,6 +39,7 @@ public class ProfilsUI : MonoBehaviour
         // Obligation d'activer les gameObjects pour pouvoir appeler les fonctions de coroutine
         gameObject.SetActive(true);
         containerTemp.SetActive(true);
+        formNewProfil.gameObject.SetActive(false);
 
         BeforeActiveProfils();
         await AuthManager.MyAccount.LoadAllDatas();
@@ -88,7 +89,9 @@ public class ProfilsUI : MonoBehaviour
     private void AfterGetProfils()
     {
         containerTemp.SetActive(false);
-
+        formNewProfil.gameObject.SetActive(false);
+        container.gameObject.SetActive(true);
+        
         // Pas de nouveau profil disponible
         // Sauf si le nombre max de subAccount est atteint
         newProfilGO.gameObject.SetActive(myAccount.SubAccounts.Count < myAccount.MaxSubAccounts);

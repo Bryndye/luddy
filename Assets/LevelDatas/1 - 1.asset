@@ -166,8 +166,7 @@ MonoBehaviour:
       MyAnswerType: 0
     AverageTimeToFinish: 15
   - MyQuestionType: 2
-    MyQuestion: "Comment s\u2019appelle cet objet ?\nN'oublie pas la majuscule au
-      d\xE9but."
+    MyQuestion: "Comment s\u2019appelle cet objet ?"
     MyDescriptionHelp: Think faster!
     MyIllustration: {fileID: 496478297201195462, guid: 1b756a3cfab408e4cab22ab2244f9a5f, type: 3}
     MyAnswers:

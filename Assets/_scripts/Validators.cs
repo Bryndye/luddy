@@ -18,9 +18,10 @@ namespace Luddy.Validators
 
         public static bool IsValidName(string name)
         {
-            string namePattern = @"^[a-zA-Z0-9._%+-]{3,}$";
+            string namePattern = @"^[a-zA-Z0-9._%+\-\s]{2,}$";
             return Regex.IsMatch(name, namePattern);
         }
+
     }
 }
 
