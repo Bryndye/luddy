@@ -49,7 +49,6 @@ public class LevelButton : MonoBehaviour
             else
             {
                 ChangeLevelState(LevelState.Unlock);
-                Debug.Log(gameObject.name);
             }
         }
         else
@@ -61,7 +60,6 @@ public class LevelButton : MonoBehaviour
                     ChangeLevelState(LevelState.Lock);
                     return;
                 }
-                Debug.Log(gameObject.name);
                 ChangeLevelState(LevelState.Unlock);
                 return;
             }

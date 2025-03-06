@@ -60,7 +60,7 @@ public class CanvasMainManager : MonoBehaviour
         levelsParent.SetActive(false);
     }
 
-    void FindAllLevelButtons()
+    public static void FindAllLevelButtons()
     {
         // Récupère tous les objets qui ont un LevelButton
         LevelButton[] levelButtons = GameObject.FindObjectsByType<LevelButton>(FindObjectsSortMode.None);

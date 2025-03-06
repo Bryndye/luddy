@@ -18,6 +18,7 @@ public class Parameter : MonoBehaviour
             canvasAuthManager.gameObject.SetActive(false);
             currentProfilUI.SetContent();
             gameObject.SetActive(false);
+            CanvasMainManager.FindAllLevelButtons();
         });
     }
 
