@@ -91,8 +91,6 @@ public class AuthManager : MonoBehaviour
     {
         try
         {
-            Debug.Log(email);
-            Debug.Log(password);
             await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(email, password);
             Debug.Log("AuthManager : SignUp is successful.");
             UpdateCurrentAccount();
@@ -115,7 +113,7 @@ public class AuthManager : MonoBehaviour
             if (ex.Message.Contains("Password"))
             {
                 Debug.Log(ex.Message);
-                _canvasAuthManager.IncorrectText("Le mot de passe ne respecte pas les conditions, il faut au moins une majuscule, une minuscule, un chiffre et un symbole.");
+                _canvasAuthManager.IncorrectText("Le mot de passe ne respecte pas les conditions, il faut au moins une majuscule, une minuscule, un chiffre et un symbole entre 8 et 30 ");
             }
         }
     }

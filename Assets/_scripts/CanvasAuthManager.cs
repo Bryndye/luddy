@@ -20,8 +20,6 @@ public class CanvasAuthManager : MonoBehaviour
     public ProfilsUI MyProfilsUI;
     public Wizard Wizard;
     public TextMeshProUGUI incorrectId;
-    [SerializeField] private string incorrectSignInText = "identifiants incorrects !";
-    [SerializeField] private string incorrectSignUpText = "identifiants incorrects !";
 
     public Action<string, string> OnSignInUI;
     public Action<string, string> OnSignUpUI;
