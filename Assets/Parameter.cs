@@ -34,6 +34,5 @@ public class Parameter : MonoBehaviour
 
         currentProfilUI.SetContent();
         gameObject.SetActive(false);
-
     }
 }

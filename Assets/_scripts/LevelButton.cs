@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ public class LevelButton : MonoBehaviour
     private AuthManager authManager;
     private Button myButton;
     [SerializeField] private LevelState levelState;
+    [Expandable]
     public LevelInfos Infos;
     [SerializeField] private TextMeshProUGUI m_TextMeshPro;
     [SerializeField] private Image Mongol;
@@ -47,12 +49,19 @@ public class LevelButton : MonoBehaviour
             else
             {
                 ChangeLevelState(LevelState.Unlock);
+                Debug.Log(gameObject.name);
             }
         }
         else
         {
             if (levels.Count >= 0 && Infos.LevelId == levels.Count +1)
             {
+                if (levels.Count > 0 && !levels[levels.Count -1].IsFinished)
+                {
+                    ChangeLevelState(LevelState.Lock);
+                    return;
+                }
+                Debug.Log(gameObject.name);
                 ChangeLevelState(LevelState.Unlock);
                 return;
             }

@@ -90,9 +90,9 @@ public class QCMContent : MonoBehaviour
 
         // Gestion des datas du level pour le player
         var level = authManager.MyCurrentSubAccount.MyLevelDatasPlayer.Where(i => i.LevelId == levelInfos.LevelId).FirstOrDefault();
+
         if (level != null && level.PourcentagePass < levelDatasPlayer.PourcentagePass)
         {
-            levelDatasPlayer.IsFinished = IsLevelPassed();
             authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
             Debug.Log("Meilleur score");
         }
@@ -102,12 +102,18 @@ public class QCMContent : MonoBehaviour
         }
         else if (level == null)
         {
-            levelDatasPlayer.IsFinished = IsLevelPassed();
             authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
             // time deja enregistre
         }
-            // MAJ des datas
-            authManager.MyAccount.SetDatas();
+
+        if (level != null && !level.IsFinished)
+        {
+            levelDatasPlayer.IsFinished = IsLevelPassed();
+            Debug.Log(levelDatasPlayer.IsFinished);
+            Debug.Log(levelDatasPlayer.PourcentagePass);
+        }
+        // MAJ des datas
+        authManager.MyAccount.SetDatas();
 
         // Création des réponses pour le joueur
         for (int i = 0; i < contentAnswerReveal1.childCount; i++)
@@ -149,7 +155,7 @@ public class QCMContent : MonoBehaviour
             }
         }
 
-        textEndReveal.text = IsLevelPassed() ? "Bravo ! \n Tu as réussi le niveau !" : 
+        textEndReveal.text = levelDatasPlayer.IsFinished ? "Bravo ! \n Tu as réussi le niveau !" : 
             "Dommage...\n Retente et tu réussira !";
 
         // Average time for this level
