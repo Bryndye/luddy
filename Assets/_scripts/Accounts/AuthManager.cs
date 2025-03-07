@@ -113,7 +113,7 @@ public class AuthManager : MonoBehaviour
             if (ex.Message.Contains("Password"))
             {
                 Debug.Log(ex.Message);
-                _canvasAuthManager.IncorrectText("Le mot de passe ne respecte pas les conditions, il faut au moins une majuscule, une minuscule, un chiffre et un symbole entre 8 et 30 ");
+                _canvasAuthManager.IncorrectText("Le mot de passe ne respecte pas les conditions, il faut au moins une majuscule, une minuscule, un chiffre et un symbole\n Le mot de passe doit faire entre 8 et 30 caractères");
             }
         }
     }
@@ -148,11 +148,19 @@ public class AuthManager : MonoBehaviour
         {
             // Compare error code to AuthenticationErrorCodes
             Debug.LogException(ex);
+            if (ex.Message.Contains("username") || ex.Message.Contains("password"))
+            {
+                _canvasAuthManager.IncorrectText("Le mail ou mot de passe n'est pas valide");
+            }
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
             Debug.LogException(ex);
+            if (ex.Message.Contains("username") || ex.Message.Contains("password"))
+            {
+                _canvasAuthManager.IncorrectText("Le mail ou mot de passe n'est pas valide");
+            }
         }
     }
 
