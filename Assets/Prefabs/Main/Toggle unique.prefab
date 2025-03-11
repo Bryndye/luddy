@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4311783752054187070, guid: d1ce4a55d648977458284649c659cff1, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4377601891762523022, guid: d1ce4a55d648977458284649c659cff1, type: 3}
       propertyPath: m_Name
       value: Toggle unique
