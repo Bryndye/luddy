@@ -34,8 +34,7 @@ MonoBehaviour:
       MyAnswerType: 1
     AverageTimeToFinish: 8
   - MyQuestionType: 1
-    MyQuestion: 'Lis cette liste de mots et dis lequel ne correspond pas : chat,
-      chien, maison, lapin.'
+    MyQuestion: 'Lis cette liste de mots et dis lequel ne correspond pas :'
     MyDescriptionHelp: Think faster!
     MyIllustration: {fileID: 0}
     MyAnswers:
@@ -151,8 +150,7 @@ MonoBehaviour:
       MyAnswerType: 0
     AverageTimeToFinish: 15
   - MyQuestionType: 0
-    MyQuestion: "Dans cette liste, coche tous les animaux : Chat, Pomme, Chien, \xC9toile,
-      Lapin."
+    MyQuestion: 'Dans cette liste, coche tous les animaux :'
     MyDescriptionHelp: Think faster!
     MyIllustration: {fileID: 0}
     MyAnswers:

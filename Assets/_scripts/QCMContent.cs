@@ -111,6 +111,10 @@ public class QCMContent : MonoBehaviour
             levelDatasPlayer.IsFinished = IsLevelPassed();
             Debug.Log(levelDatasPlayer.IsFinished);
             Debug.Log(levelDatasPlayer.PourcentagePass);
+            if (levelDatasPlayer.IsFinished)
+            {
+                authManager.MyCurrentSubAccount.AddLevelDataPlayer(levelDatasPlayer);
+            }
         }
         // MAJ des datas
         authManager.MyAccount.SetDatas();
